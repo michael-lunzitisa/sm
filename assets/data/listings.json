@@ -1,0 +1,114 @@
+{
+  "listings": [
+    {
+      "id": 1,
+      "title": "Cozy Apartment in the City Center",
+      "description": "A comfortable apartment located in the heart of the city. Perfect for exploring the local attractions.",
+      "price_per_night": 120,
+      "location": {
+        "city": "Paris",
+        "country": "France",
+        "coordinates": {
+          "latitude": 48.8566,
+          "longitude": 2.3522
+        }
+      },
+      "host": {
+        "id": 101,
+        "name": "Alice",
+        "avatar_url": "https://example.com/avatar1.jpg",
+        "is_superhost": true
+      },
+      "images": [
+        "https://example.com/image1.jpg",
+        "https://example.com/image2.jpg",
+        "https://example.com/image3.jpg"
+      ],
+      "rating": 4.8,
+      "reviews_count": 34,
+      "amenities": [
+        "Wi-Fi",
+        "Kitchen",
+        "Washer",
+        "Air conditioning"
+      ],
+      "categories": ["Apartment", "City"]
+    },
+    {
+      "id": 2,
+      "title": "Beachfront Villa with Private Pool",
+      "description": "A luxurious villa located right on the beach. Enjoy the private pool and stunning sea views.",
+      "price_per_night": 450,
+      "location": {
+        "city": "Malibu",
+        "country": "USA",
+        "coordinates": {
+          "latitude": 34.0259,
+          "longitude": -118.7798
+        }
+      },
+      "host": {
+        "id": 102,
+        "name": "Bob",
+        "avatar_url": "https://example.com/avatar2.jpg",
+        "is_superhost": false
+      },
+      "images": [
+        "https://example.com/image4.jpg",
+        "https://example.com/image5.jpg",
+        "https://example.com/image6.jpg"
+      ],
+      "rating": 4.9,
+      "reviews_count": 58,
+      "amenities": [
+        "Wi-Fi",
+        "Pool",
+        "Kitchen",
+        "Free parking on premises"
+      ],
+      "categories": ["Villa", "Beach"]
+    }
+  ],
+  "hosts": [
+    {
+      "id": 101,
+      "name": "Alice",
+      "avatar_url": "https://example.com/avatar1.jpg",
+      "is_superhost": true,
+      "listings": [1]
+    },
+    {
+      "id": 102,
+      "name": "Bob",
+      "avatar_url": "https://example.com/avatar2.jpg",
+      "is_superhost": false,
+      "listings": [2]
+    }
+  ],
+  "reviews": [
+    {
+      "id": 201,
+      "listing_id": 1,
+      "user": {
+        "id": 301,
+        "name": "Charlie",
+        "avatar_url": "https://example.com/user1.jpg"
+      },
+      "rating": 5,
+      "comment": "Amazing place! Very comfortable and great location.",
+      "date": "2023-07-20"
+    },
+    {
+      "id": 202,
+      "listing_id": 2,
+      "user": {
+        "id": 302,
+        "name": "Dave",
+        "avatar_url": "https://example.com/user2.jpg"
+      },
+      "rating": 4,
+      "comment": "Beautiful villa with stunning views. The pool was fantastic.",
+      "date": "2023-07-15"
+    }
+  ]
+}
