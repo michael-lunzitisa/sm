@@ -2,59 +2,112 @@ import {
     View,
     FlatList,
     Text,
+    Image,
     StyleSheet,
     TouchableOpacity,
-    Image,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "expo-router";
 
-const Listings = ({ listings: items, category }) => {
+import React, { useEffect, useState } from "react";
+import { Link } from "expo-router";
+import { defaulStyles } from "@/constants/Styles";
+import { Ionicons } from "@expo/vector-icons";
+
+const Listings = ({ listings, category }) => {
     const [loading, setLoading] = useState(false);
-    const listRef = useRef(null);
 
     useEffect(() => {
-        console.log("RELOAD LISTINGS", items, "CATEGORY", category);
+        // console.log("RELOAD LISTINGS", "CATEGORY", category);
         setLoading(true);
 
         setTimeout(() => {
             setLoading(false);
         }, 200);
-    }, [category, items]);
+    }, [category]);
 
-    const renderRow = ({ item }) => (
-        <Link href={`/listing/${item.id}`} asChild>
-            <TouchableOpacity>
-                <View style={styles.listings}>
-                    {item.images && (
+    const renderItems = ({ item }) => {
+        return (
+            <Link href={`/listing/${item.id}`} asChild>
+                <TouchableOpacity>
+                    <View style={styles.listing}>
                         <Image
-                            source={{ uri: item.images[0] }}
+                            source={{ uri: item.image }}
                             style={styles.image}
                         />
-                    )}
-                    <Text>{item.title}</Text>
-                    <Text>{item.description}</Text>
-                    <Text>${item.price_per_night} per night</Text>
-                    <View></View>
-                </View>
-            </TouchableOpacity>
-        </Link>
-    );
+                        <TouchableOpacity
+                            style={{ position: "absolute", right: 30, top: 30 }}
+                        >
+                            <Ionicons
+                                name="heart-outline"
+                                size={24}
+                                color={"#000"}
+                            />
+                        </TouchableOpacity>
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            <Text
+                                style={{ fontStyle: 16, fontFamily: "mon-sb" }}
+                            >
+                                {item.name}
+                            </Text>
+                            <View style={{ flexDirection: "row", gap: 4 }}>
+                                <Ionicons
+                                    name="star-sharp"
+                                    size={16}
+                                    color="black"
+                                />
+                                <Text style={{ fontFamily: "mon-sb" }}>
+                                    {item.rating}
+                                </Text>
+                            </View>
+                        </View>
+                        <Text style={{ fontFamily: "mon" }}>
+                            {item.room_type}
+                        </Text>
+
+                        <View style={{ flexDirection: "row", gap: 4 }}>
+                            <Ionicons
+                                name="star-sharp"
+                                size={16}
+                                color="black"
+                            />
+                            <Text style={{ fontFamily: "mon-sb" }}>
+                                ${item.price}
+                            </Text>
+                            <Text style={{ fontFamily: "mon" }}>night </Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            </Link>
+        );
+    };
 
     return (
-        <View>
+        <View style={defaulStyles.container}>
             <FlatList
-                data={loading ? [] : items}
-                renderItem={renderRow}
+                data={loading ? [] : listings}
+                renderItem={renderItems}
                 keyExtractor={(item) => item.id.toString()}
-                ref={listRef}
             />
         </View>
     );
 };
+
 const styles = StyleSheet.create({
-    listings: {
+    listing: {
         padding: 16,
+        gap: 10,
+        marginVertical: 16,
+    },
+    image: {
+        width: "100%",
+        height: 200,
+
+        borderRadius: 10,
     },
 });
+
 export default Listings;

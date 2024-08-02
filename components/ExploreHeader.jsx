@@ -86,7 +86,7 @@ const ExploreHeader = ({ onCategoryChanged }) => {
                     </Link>
                 </View>
                 <ScrollView
-                    ref={scrollRef}
+                    // ref={scrollRef}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{

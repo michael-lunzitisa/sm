@@ -51,6 +51,20 @@ const navigation = useNavigation();
           ) 
         }} 
       />
+      <Stack.Screen name="listing/[id]" options={{ headerTitle: "", headerTransparent:false }} />
+      <Stack.Screen 
+        name="(modals)/booking" 
+        options={{ 
+          title: "Se connecter ou s'inscrire",
+          headerTitleStyle: { fontFamily: "mon-sb" },
+          presentation: "transparentModal",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginLeft: 10 }}>
+              <Ionicons name='close-outline' size={28}/>
+            </TouchableOpacity>
+          ) 
+        }} 
+      />
     </Stack>
 
   );
