@@ -51,7 +51,7 @@ const navigation = useNavigation();
           ) 
         }} 
       />
-      <Stack.Screen name="listing/[id]" options={{ headerTitle: "", headerTransparent:false }} />
+      <Stack.Screen name="listing/[id]" options={{ headerTitle: "", headerTransparent:true }} />
       <Stack.Screen 
         name="(modals)/booking" 
         options={{ 
