@@ -86,7 +86,7 @@ const ExploreHeader = ({ onCategoryChanged }) => {
                     </Link>
                 </View>
                 <ScrollView
-                    // ref={scrollRef}
+                    ref={scrollRef}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{
@@ -167,10 +167,10 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOpacity: 0.12,
         shadowRadius: 8,
-        shadowOffset: {
-            width: 1,
-            height: 1,
-        },
+        // shadowOffset: {
+        //     width: 1,
+        //     height: 1,
+        // },
     },
     categotyText: {
         fontSize: 14,

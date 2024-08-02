@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
-import 'react-native-reanimated';
+// import 'react-native-reanimated';
 
 
 
