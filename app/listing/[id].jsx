@@ -5,7 +5,6 @@ import listingsData from "@/assets/data/listings.json";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import { defaulStyles } from "@/constants/Styles";
-import { styleProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 const Page = () => {
     const { id } = useLocalSearchParams();
