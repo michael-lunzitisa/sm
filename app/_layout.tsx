@@ -6,6 +6,7 @@ import { useEffect, useCallback } from 'react';
 import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { useNavigation } from 'expo-router';
 import ModalHeaderText from "../components/ModalHeaderText";
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -50,7 +51,7 @@ export default function RootLayout() {
             headerTitleStyle: { fontFamily: "mon-sb" },
             presentation: "modal",
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginLeft: 10 }}>
+              <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
                 <Ionicons name='close-outline' size={28}/>
               </TouchableOpacity>
             ) 
@@ -62,10 +63,12 @@ export default function RootLayout() {
           options={{ 
             headerTitleStyle: { fontFamily: "mon-sb" },
             presentation: "transparentModal",
+            animation:"fade",
+            headerTransparent:true,
             headerTitle: () => <ModalHeaderText />,
             headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginLeft: 10 }}>
-                <Ionicons name='close-outline' size={28}/>
+              <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor:"#fff", borderColor:Colors.gray, borderRadius:20, borderWidth:1, padding:4, marginLeft:-60, marginRight:60}}>
+                <Ionicons name='close-outline' size={22} />
               </TouchableOpacity>
             ) 
           }} 
