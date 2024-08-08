@@ -12,7 +12,7 @@ import { Link } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { useRef } from "react";
-// import * as Haptics from "expo-haptics";
+import * as Haptics from "expo-haptics";
 // import Animated from "react-native-reanimated";
 
 const ExploreHeader = ({ onCategoryChanged }) => {
@@ -55,7 +55,7 @@ const ExploreHeader = ({ onCategoryChanged }) => {
             });
         });
 
-        // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         onCategoryChanged(categories[index].name);
     };
 

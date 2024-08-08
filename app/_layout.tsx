@@ -7,6 +7,9 @@ import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { useNavigation } from 'expo-router';
 import ModalHeaderText from "../components/ModalHeaderText";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import  {AuthProvider} from "../app/context/contextLogin"
+import { useRoute } from '@react-navigation/native';
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -24,6 +27,10 @@ export default function RootLayout() {
     }
   }, [fontsLoaded]);
 
+
+
+
+
   const navigation = useNavigation();
 
   const onLayoutRootView = useCallback(async () => {
@@ -39,41 +46,62 @@ export default function RootLayout() {
       </View>
     );
   }
+  
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen 
-          name="(modals)/login" 
-          options={{ 
-            title: "Se connecter ou s'inscrire",
-            headerTitleStyle: { fontFamily: "mon-sb" },
-            presentation: "modal",
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
-                <Ionicons name='close-outline' size={28}/>
-              </TouchableOpacity>
-            ) 
-          }} 
-        />
-        <Stack.Screen name="listing/[id]" options={{ headerTitle: "", headerTransparent:true }} />
-        <Stack.Screen 
-          name="(modals)/booking" 
-          options={{ 
-            headerTitleStyle: { fontFamily: "mon-sb" },
-            presentation: "transparentModal",
-            animation:"fade",
-            headerTransparent:true,
-            headerTitle: () => <ModalHeaderText />,
-            headerLeft: () => (
-              <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor:"#fff", borderColor:Colors.gray, borderRadius:20, borderWidth:1, padding:4, marginLeft:-60, marginRight:60}}>
-                <Ionicons name='close-outline' size={22} />
-              </TouchableOpacity>
-            ) 
-          }} 
-        />
-      </Stack>
-    </View>
+     <AuthProvider>
+    
+      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen 
+            name="(modals)/login" 
+            options={{ 
+              title: "Se connecter ou s'inscrire",
+              headerTitleStyle: { fontFamily: "mon-sb" },
+              presentation: "modal",
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
+                  <Ionicons name='close-outline' size={28}/>
+                </TouchableOpacity>
+              ) 
+            }} 
+          />
+          <Stack.Screen name="listing/[id]" options={{ headerTitle: "", headerTransparent:true }} />
+          <Stack.Screen 
+            name="(modals)/booking" 
+            options={{ 
+              headerTitleStyle: { fontFamily: "mon-sb" },
+              presentation: "transparentModal",
+              animation:"fade",
+              headerTransparent:true,
+              headerTitle: () => <ModalHeaderText />,
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor:"#fff", borderColor:Colors.gray, borderRadius:20, borderWidth:1, padding:4, marginLeft:-60, marginRight:60}}>
+                  <Ionicons name='close-outline' size={22} />
+                </TouchableOpacity>
+              ) 
+            }} 
+          />
+<Stack.Screen 
+            name="(modals)/pay" 
+            options={{ 
+              title: "Confirmer et payer",
+              headerTitleStyle: { fontFamily: "mon-sb" },
+              presentation: "modal",
+              headerTransparent:false,
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 40, marginLeft:10, }}>
+                  <Ionicons name='close-outline' size={28}/>
+                </TouchableOpacity>
+              ) 
+            }} 
+          />
+
+
+
+        </Stack>
+      </View>
+     </AuthProvider>
   );
 }

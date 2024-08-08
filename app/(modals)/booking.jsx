@@ -7,7 +7,7 @@ import {
     ScrollView,
     Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BlurView } from "expo-blur";
 import Animated, {
     FadeIn,
@@ -50,16 +50,47 @@ const guestsGroups = [
 const Page = () => {
     const navigation = useNavigation();
     const [openCard, setOpenCard] = useState(2);
-    const [selectedPlace, setSelectedPlace] = useState(0);
-    const [date, setDate] = useState(new Date());
+    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [date, setDate] = useState(null); // Initialise date à null
     const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
     const [groups, setGroups] = useState(guestsGroups);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filteredPlaces, setFilteredPlaces] = useState(places);
+
+    useEffect(() => {
+        if (searchQuery === "") {
+            setFilteredPlaces(places);
+        } else {
+            setFilteredPlaces(
+                places.filter((place) =>
+                    place.title
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
+                )
+            );
+        }
+    }, [searchQuery]);
 
     const onClearAll = () => {
         setOpenCard(0);
-        setSelectedPlace(0);
+        setSelectedPlace(null);
+        // Enlevez la ligne suivante pour conserver la date
+        // setDate(null);
         setIsDatePickerVisible(false);
         setGroups(guestsGroups.map((group) => ({ ...group, count: 0 })));
+        setSearchQuery("");
+    };
+
+    const handlePlaceSelect = (index) => {
+        setSelectedPlace(index);
+        setOpenCard(1); // Ouvre automatiquement la section "Quand" après avoir sélectionné une destination
+    };
+
+    const handleNextClick = () => {
+        if (openCard === 1 && date) {
+            // Vérifie si une date est sélectionnée
+            setOpenCard(2); // Passe à la section "Qui" après la sélection de la date
+        }
     };
 
     return (
@@ -75,7 +106,9 @@ const Page = () => {
                     >
                         <Text style={styles.previewText}>Où</Text>
                         <Text style={styles.previewDate}>
-                            Je suis flexible.
+                            {selectedPlace !== null
+                                ? places[selectedPlace].title
+                                : "Je suis flexible."}
                         </Text>
                     </AnimatedTouchableOpacity>
                 )}
@@ -99,6 +132,8 @@ const Page = () => {
                                     style={styles.inputField}
                                     placeholder="Rechercher une destination"
                                     placeholderTextColor={Colors.gray}
+                                    value={searchQuery}
+                                    onChangeText={setSearchQuery}
                                 />
                             </View>
                         </Animated.View>
@@ -111,10 +146,10 @@ const Page = () => {
                                 paddingBottom: 30,
                             }}
                         >
-                            {places.map((item, index) => (
+                            {filteredPlaces.map((item, index) => (
                                 <TouchableOpacity
                                     key={index}
-                                    onPress={() => setSelectedPlace(index)}
+                                    onPress={() => handlePlaceSelect(index)}
                                 >
                                     <Image
                                         source={{ uri: item.image }}
@@ -156,7 +191,11 @@ const Page = () => {
                         exiting={FadeOut.duration(200)}
                     >
                         <Text style={styles.previewText}>Quand</Text>
-                        <Text style={styles.previewDate}>Chaque semaine.</Text>
+                        <Text style={styles.previewDate}>
+                            {date
+                                ? date.toLocaleDateString()
+                                : "Chaque semaine."}
+                        </Text>
                     </AnimatedTouchableOpacity>
                 )}
 
@@ -169,14 +208,14 @@ const Page = () => {
                                 setIsDatePickerVisible(!isDatePickerVisible)
                             }
                         >
-                            Quand voulez vous-voyager ?
+                            Quand voulez-vous voyager ?
                         </Animated.Text>
                         {isDatePickerVisible && (
                             <Animated.View style={styles.cardBody}>
                                 <DateTimePicker
                                     mode="date"
                                     display="spinner"
-                                    value={date}
+                                    value={date || new Date()} // Utilise la date actuelle si date est null
                                     onChange={(event, selectedDate) => {
                                         const currentDate =
                                             selectedDate || date;
@@ -185,6 +224,16 @@ const Page = () => {
                                     }}
                                 />
                             </Animated.View>
+                        )}
+                        {date && (
+                            <TouchableOpacity
+                                onPress={handleNextClick}
+                                style={styles.nextButton}
+                            >
+                                <Text style={styles.nextButtonText}>
+                                    Suivant
+                                </Text>
+                            </TouchableOpacity>
                         )}
                     </>
                 )}
@@ -339,6 +388,7 @@ const Page = () => {
         </BlurView>
     );
 };
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -420,6 +470,18 @@ const styles = StyleSheet.create({
     itemborder: {
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: Colors.gray,
+    },
+    nextButton: {
+        backgroundColor: Colors.primary,
+        padding: 15,
+        borderRadius: 10,
+        alignItems: "center",
+        marginTop: 20,
+    },
+    nextButtonText: {
+        color: "#fff",
+        fontSize: 16,
+        fontFamily: "mon-sb",
     },
 });
 

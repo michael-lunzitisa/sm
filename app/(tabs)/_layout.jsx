@@ -4,8 +4,11 @@ import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useAuth } from "../context/contextLogin";
 
 const Layout = () => {
+    const { user } = useAuth();
+
     return (
         <Tabs
             screenOptions={{
@@ -60,9 +63,9 @@ const Layout = () => {
                 }}
             />
             <Tabs.Screen
-                name="profile"
+                name="loginProfil"
                 options={{
-                    tabBarLabel: "Profil",
+                    tabBarLabel: user ? "Profil" : "Connexion",
                     headerShown: "false",
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons
