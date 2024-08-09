@@ -8,7 +8,7 @@ import { useNavigation } from 'expo-router';
 import ModalHeaderText from "../components/ModalHeaderText";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import  {AuthProvider} from "../app/context/contextLogin"
-import { useRoute } from '@react-navigation/native';
+
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -83,7 +83,7 @@ export default function RootLayout() {
               ) 
             }} 
           />
-<Stack.Screen 
+            <Stack.Screen 
             name="(modals)/pay" 
             options={{ 
               title: "Confirmer et payer",
