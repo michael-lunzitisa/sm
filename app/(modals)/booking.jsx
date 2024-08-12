@@ -475,6 +475,7 @@ const styles = StyleSheet.create({
     },
     cardBody: {
         paddingHorizontal: 20,
+        marginBottom: 20,
     },
     searchSection: {
         height: 59,
