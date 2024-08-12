@@ -51,8 +51,10 @@ const Page = () => {
     const navigation = useNavigation();
     const [openCard, setOpenCard] = useState(2);
     const [selectedPlace, setSelectedPlace] = useState(null);
-    const [date, setDate] = useState(null); // Initialise date à null
-    const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+    const [arrivalDate, setArrivalDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [showArrivalDatePicker, setShowArrivalDatePicker] = useState(false);
+    const [showEndDatePicker, setShowEndDatePicker] = useState(false);
     const [groups, setGroups] = useState(guestsGroups);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredPlaces, setFilteredPlaces] = useState(places);
@@ -74,9 +76,10 @@ const Page = () => {
     const onClearAll = () => {
         setOpenCard(0);
         setSelectedPlace(null);
-        // Enlevez la ligne suivante pour conserver la date
-        // setDate(null);
-        setIsDatePickerVisible(false);
+        setArrivalDate(null);
+        setEndDate(null);
+        setShowArrivalDatePicker(false);
+        setShowEndDatePicker(false);
         setGroups(guestsGroups.map((group) => ({ ...group, count: 0 })));
         setSearchQuery("");
     };
@@ -86,10 +89,25 @@ const Page = () => {
         setOpenCard(1); // Ouvre automatiquement la section "Quand" après avoir sélectionné une destination
     };
 
+    const handleDateChange = (event, selectedDate) => {
+        if (event.type === "set") {
+            const currentDate = selectedDate || new Date();
+            if (showArrivalDatePicker) {
+                setArrivalDate(currentDate);
+                setShowArrivalDatePicker(false);
+            } else if (showEndDatePicker) {
+                setEndDate(currentDate);
+                setShowEndDatePicker(false);
+            }
+        } else {
+            setShowArrivalDatePicker(false);
+            setShowEndDatePicker(false);
+        }
+    };
+
     const handleNextClick = () => {
-        if (openCard === 1 && date) {
-            // Vérifie si une date est sélectionnée
-            setOpenCard(2); // Passe à la section "Qui" après la sélection de la date
+        if (openCard === 1 && arrivalDate && endDate) {
+            setOpenCard(2); // Passe à la section "Qui" après la sélection des dates
         }
     };
 
@@ -184,7 +202,8 @@ const Page = () => {
                     <AnimatedTouchableOpacity
                         onPress={() => {
                             setOpenCard(1);
-                            setIsDatePickerVisible(false);
+                            setShowArrivalDatePicker(false);
+                            setShowEndDatePicker(false);
                         }}
                         style={styles.cardPreviex}
                         entering={FadeIn.duration(200)}
@@ -192,8 +211,8 @@ const Page = () => {
                     >
                         <Text style={styles.previewText}>Quand</Text>
                         <Text style={styles.previewDate}>
-                            {date
-                                ? date.toLocaleDateString()
+                            {arrivalDate && endDate
+                                ? `${arrivalDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
                                 : "Chaque semaine."}
                         </Text>
                     </AnimatedTouchableOpacity>
@@ -204,37 +223,59 @@ const Page = () => {
                         <Animated.Text
                             entering={FadeIn}
                             style={styles.cardHeader}
-                            onPress={() =>
-                                setIsDatePickerVisible(!isDatePickerVisible)
-                            }
                         >
                             Quand voulez-vous voyager ?
                         </Animated.Text>
-                        {isDatePickerVisible && (
-                            <Animated.View style={styles.cardBody}>
+                        <Animated.View style={styles.cardBody}>
+                            <TouchableOpacity
+                                onPress={() => setShowArrivalDatePicker(true)}
+                                style={styles.dateButton}
+                            >
+                                <Text style={styles.dateButtonText}>
+                                    {arrivalDate
+                                        ? `Date d'arrivée: ${arrivalDate.toLocaleDateString()}`
+                                        : "Sélectionner la date d'arrivée"}
+                                </Text>
+                            </TouchableOpacity>
+                            {showArrivalDatePicker && (
                                 <DateTimePicker
                                     mode="date"
                                     display="spinner"
-                                    value={date || new Date()} // Utilise la date actuelle si date est null
-                                    onChange={(event, selectedDate) => {
-                                        const currentDate =
-                                            selectedDate || date;
-                                        setDate(currentDate);
-                                        setIsDatePickerVisible(false);
-                                    }}
+                                    value={arrivalDate || new Date()}
+                                    onChange={handleDateChange}
                                 />
-                            </Animated.View>
-                        )}
-                        {date && (
+                            )}
+
                             <TouchableOpacity
-                                onPress={handleNextClick}
-                                style={styles.nextButton}
+                                onPress={() => setShowEndDatePicker(true)}
+                                style={styles.dateButton}
                             >
-                                <Text style={styles.nextButtonText}>
-                                    Suivant
+                                <Text style={styles.dateButtonText}>
+                                    {endDate
+                                        ? `Date de fin: ${endDate.toLocaleDateString()}`
+                                        : "Sélectionner la date de fin"}
                                 </Text>
                             </TouchableOpacity>
-                        )}
+                            {showEndDatePicker && (
+                                <DateTimePicker
+                                    mode="date"
+                                    display="spinner"
+                                    value={endDate || new Date()}
+                                    onChange={handleDateChange}
+                                />
+                            )}
+
+                            {arrivalDate && endDate && (
+                                <TouchableOpacity
+                                    onPress={handleNextClick}
+                                    style={styles.nextButton}
+                                >
+                                    <Text style={styles.nextButtonText}>
+                                        Suivant
+                                    </Text>
+                                </TouchableOpacity>
+                            )}
+                        </Animated.View>
                     </>
                 )}
             </View>
@@ -253,23 +294,28 @@ const Page = () => {
                         </Text>
                     </AnimatedTouchableOpacity>
                 )}
-
                 {openCard === 2 && (
                     <>
                         <Animated.Text
                             entering={FadeIn}
                             style={styles.cardHeader}
                         >
-                            Qui vient ?
+                            Qui vient avec vous ?
                         </Animated.Text>
                         <Animated.View style={styles.cardBody}>
                             {groups.map((item, index) => (
-                                <View key={index} style={styles.guestsItem}>
+                                <View
+                                    key={index}
+                                    style={[
+                                        styles.guestsItem,
+                                        styles.itemborder,
+                                    ]}
+                                >
                                     <View>
                                         <Text
                                             style={{
-                                                fontFamily: "mon-sb",
-                                                fontSize: 14,
+                                                fontFamily: "mon-b",
+                                                fontSize: 16,
                                             }}
                                         >
                                             {item.name}
@@ -277,7 +323,7 @@ const Page = () => {
                                         <Text
                                             style={{
                                                 fontFamily: "mon",
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.gray,
                                             }}
                                         >
@@ -287,9 +333,8 @@ const Page = () => {
                                     <View
                                         style={{
                                             flexDirection: "row",
-                                            gap: 10,
                                             alignItems: "center",
-                                            justifyContent: "center",
+                                            gap: 10,
                                         }}
                                     >
                                         <TouchableOpacity
@@ -470,6 +515,16 @@ const styles = StyleSheet.create({
     itemborder: {
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: Colors.gray,
+    },
+    dateButton: {
+        paddingVertical: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.gray,
+    },
+    dateButtonText: {
+        fontFamily: "mon",
+        fontSize: 16,
+        color: Colors.dark,
     },
     nextButton: {
         backgroundColor: Colors.primary,
