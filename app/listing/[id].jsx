@@ -13,16 +13,16 @@ const Page = () => {
     const router = useRouter();
     const navigation = useNavigation();
 
-    // const shareList = async () => {
-    //     try {
-    //         await Share.share({
-    //             title: listing.name,
-    //             url: listing.listing_url,
-    //         });
-    //     } catch (error) {
-    //         console.log(err);
-    //     }
-    // };
+    const shareList = async () => {
+        try {
+            await Share.share({
+                title: listing.name,
+                url: listing.listing_url,
+            });
+        } catch (error) {
+            console.log(err);
+        }
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({

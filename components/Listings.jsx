@@ -124,6 +124,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "expo-router";
 import { defaulStyles } from "@/constants/Styles";
 import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
 
 const Listings = ({ listings, category }) => {
     const [loading, setLoading] = useState(false);
@@ -147,6 +148,7 @@ const Listings = ({ listings, category }) => {
                             name="heart-outline"
                             size={24}
                             color={"#000"}
+                            style={styles.roundeButton}
                         />
                     </TouchableOpacity>
                     <View
@@ -204,6 +206,18 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 200,
         borderRadius: 10,
+    },
+    roundeButton: {
+        width: 29,
+        height: 30,
+        borderRadius: 50,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+        color: Colors.primary,
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: Colors.gray,
+        padding: 3,
     },
 });
 

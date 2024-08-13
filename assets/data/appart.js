@@ -23,6 +23,9 @@ export const listingAppart = [
         bathrooms: 3,
         isAds: null,
         map: { lat: 55.2094559, lng: 61.5594641 },
+        description:
+            "Ce superbe appartement situé en plein cœur de Kinshasa offre une expérience unique et inoubliable. Le décor moderne, associé à des équipements de qualité, vous garantit un séjour agréable. L'appartement dispose de toutes les commodités nécessaires pour votre confort, y compris une cuisine entièrement équipée, un espace de vie spacieux, et une vue imprenable sur la ville. Que vous soyez ici pour affaires ou pour le plaisir, cet appartement est l'endroit idéal pour se détendre après une longue journée de travail ou de visites.",
+        duration: "3 nuits",
     },
     {
         id: "id_2",
@@ -48,6 +51,9 @@ export const listingAppart = [
         bathrooms: 7,
         isAds: null,
         map: { lat: 55.1972153, lng: 61.4407266 },
+        description:
+            "Découvrez un havre de paix au cœur de Lubumbashi. Cette charmante chambre est nichée dans un quartier calme, offrant à ses occupants un espace serein pour se détendre. Les couleurs douces et l'ameublement confortable créent une ambiance chaleureuse et accueillante, parfaite pour une évasion de la routine quotidienne.\n\nProfitez de la proximité de toutes les commodités locales, tout en ayant la sensation d'être loin du tumulte de la ville. Que vous soyez ici pour affaires ou pour le plaisir, vous trouverez tout ce dont vous avez besoin à quelques pas. La chambre est équipée de tout le confort moderne, assurant un séjour agréable.\n\nLa maison dispose d'une vaste galerie d'images qui vous permet de découvrir chaque recoin de ce charmant refuge avant votre arrivée. Avec six chambres spacieuses et sept salles de bains, il y a amplement d'espace pour accueillir jusqu'à dix personnes. C'est l'endroit idéal pour les groupes d'amis ou les familles nombreuses.\n\nNe manquez pas l'opportunité de séjourner dans ce lieu exceptionnel où chaque détail a été soigneusement pensé pour maximiser votre confort. Avec une disponibilité limitée, réservez dès maintenant pour vous assurer un séjour inoubliable à Lubumbashi.",
+        duration: "1 semaine",
     },
     {
         id: "id_3",
@@ -74,6 +80,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.247483, lng: 61.5229791 },
+        description:
+            "Cette magnifique maison située à Kinshasa offre un cadre de vie exceptionnel, avec une vue imprenable sur la ville. Conçue pour offrir un maximum de confort, elle dispose de neuf chambres spacieuses, chacune équipée d'une salle de bain privée. La maison est décorée avec goût, alliant modernité et tradition congolaise, ce qui crée une ambiance chaleureuse et accueillante.\n\nLes espaces communs comprennent un grand salon, une salle à manger élégante, et une cuisine entièrement équipée pour préparer des repas en famille ou entre amis. Le jardin est un véritable havre de paix, idéal pour se détendre après une journée bien remplie à explorer la ville. Les hôtes peuvent également profiter d'une piscine privée, parfaite pour se rafraîchir durant les chaudes journées d'été.\n\nLa maison est située dans un quartier calme et sécurisé de Kinshasa, à proximité des principales attractions touristiques, des restaurants, et des centres commerciaux. C'est l'endroit idéal pour les familles ou les groupes d'amis cherchant à passer un séjour inoubliable en République Démocratique du Congo.\n\nQue vous soyez en voyage d'affaires ou en vacances, cette maison répondra à toutes vos attentes. Avec ses équipements de haute qualité et son emplacement privilégié, elle vous garantit un séjour des plus agréables.",
+        duration: "1 semaine",
     },
     {
         id: "id_4",
@@ -100,6 +109,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.2342034, lng: 61.5409607 },
+        description:
+            "Cet appartement confortable situé au cœur de Kinshasa est parfait pour ceux qui recherchent un hébergement pratique et abordable. Avec sept chambres à coucher et cinq salles de bain, il peut accueillir jusqu'à six personnes, ce qui en fait un excellent choix pour les familles ou les petits groupes d'amis. L'appartement est décoré de manière simple mais élégante, offrant tout le nécessaire pour un séjour agréable.\n\nL'appartement dispose d'une cuisine fonctionnelle où vous pouvez préparer vos repas, ainsi qu'un salon confortable où vous pouvez vous détendre après une journée de visite. Les chambres sont équipées de lits confortables et de rangements suffisants pour vos effets personnels. La salle de bain principale est spacieuse et équipée d'une douche moderne.\n\nSitué dans un quartier animé de Kinshasa, cet appartement offre un accès facile aux transports en commun, aux restaurants, et aux boutiques. Vous serez également proche de plusieurs sites touristiques et culturels, ce qui vous permettra de découvrir tout ce que la ville a à offrir. L'emplacement est idéal pour explorer Kinshasa tout en profitant d'un hébergement confortable.\n\nQue vous soyez ici pour le travail ou pour le plaisir, cet appartement répondra à vos besoins. Il offre un excellent rapport qualité-prix et constitue une base idéale pour découvrir Kinshasa et ses environs.",
+        duration: "1 semaine",
     },
     {
         id: "id_5",
@@ -126,6 +138,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.2288039, lng: 61.6050232 },
+        description:
+            "Découvrez cette chambre charmante située à Lubumbashi, parfaite pour un séjour relaxant. Vous serez séduit par le confort et la tranquillité de cet espace qui offre une vue imprenable sur les environs. La chambre est décorée avec soin et dispose de toutes les commodités nécessaires pour un séjour agréable.\n\nLes alentours offrent une variété d'activités pour tous les goûts. Que vous soyez amateur de nature ou de culture, vous trouverez de nombreuses attractions à proximité. Le quartier est également bien desservi par les transports en commun, facilitant vos déplacements dans la ville.\n\nNous avons mis en place des mesures de sécurité rigoureuses pour garantir votre bien-être tout au long de votre séjour. Notre équipe est disponible pour répondre à toutes vos questions et s'assurer que votre expérience soit mémorable.\n\nRéservez dès maintenant pour profiter d'un séjour d'une semaine dans cette chambre accueillante. Vous apprécierez la combinaison parfaite de confort et de commodité dans un cadre paisible.",
+        duration: "1 semaine",
     },
     {
         id: "id_6",
@@ -152,6 +167,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.1952216, lng: 61.6115793 },
+        description:
+            "Bienvenue dans cette magnifique villa située à Kinshasa, un véritable havre de paix pour vos séjours en famille ou entre amis. Avec ses sept chambres spacieuses et ses sept salles de bains, cette villa offre un confort inégalé et suffisamment d'espace pour accueillir jusqu'à huit personnes.\n\nLa villa est équipée de tout le nécessaire pour un séjour agréable, avec des espaces communs élégamment décorés et des équipements modernes. Profitez de moments de détente dans le grand salon, ou prenez un repas en plein air dans le jardin privé. Les vues panoramiques depuis la villa ajoutent une touche spéciale à votre expérience.\n\nKinshasa est une ville dynamique avec une vie culturelle riche, et vous trouverez de nombreuses attractions à proximité. Explorez les marchés locaux, visitez les musées ou profitez des restaurants raffinés. La villa est idéalement située pour accéder facilement à toutes les attractions de la ville.\n\nRéservez votre séjour d'une semaine dans cette villa de rêve pour une expérience inoubliable. Nous nous engageons à vous offrir un service de qualité et à veiller à ce que votre séjour soit des plus agréables.",
+        duration: "1 semaine",
     },
     {
         id: "id_7",
@@ -177,6 +195,9 @@ export const listingAppart = [
         bathrooms: 5,
         isAds: null,
         map: { lat: 55.2211607, lng: 61.5065318 },
+        description:
+            "Cet appartement situé à Kinshasa est le choix parfait pour une escapade relaxante. Avec ses deux chambres spacieuses et cinq salles de bains bien aménagées, il offre tout le confort nécessaire pour un séjour agréable. Les invités peuvent profiter d'une vue imprenable sur la ville depuis le balcon, ainsi que d'un intérieur moderne et élégant.\n\nLa décoration intérieure est à la fois chic et fonctionnelle, avec des équipements modernes pour rendre votre séjour aussi agréable que possible. La cuisine entièrement équipée permet de préparer vos repas en toute simplicité, tandis que le salon confortable est idéal pour se détendre après une longue journée d'exploration.\n\nÀ l'extérieur, vous trouverez des espaces verts et des installations pour les activités de plein air. La proximité des attractions locales permet de découvrir facilement tout ce que Kinshasa a à offrir, des musées aux marchés animés en passant par les restaurants raffinés.\n\nEn résumé, cet appartement est un havre de paix au cœur de la ville, offrant une combinaison parfaite de confort et de commodité pour un séjour inoubliable.",
+        duration: "1 semaine",
     },
     {
         id: "id_8",
@@ -203,6 +224,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.2126851, lng: 61.4912261 },
+        description:
+            "Cette maison spacieuse à Kinshasa est idéale pour les familles ou groupes souhaitant découvrir la ville tout en profitant d'un espace confortable et bien équipé. Avec ses sept chambres et quatre salles de bains, elle peut accueillir jusqu'à six personnes, offrant ainsi beaucoup de place pour se détendre et se relaxer.\n\nLe design intérieur est moderne et accueillant, avec des finitions de haute qualité et des équipements récents. La maison dispose d'une grande cuisine ouverte, parfaite pour préparer des repas en famille ou entre amis, ainsi que d'un salon lumineux et confortable.\n\nÀ l'extérieur, vous trouverez un jardin spacieux où vous pouvez profiter du climat agréable de Kinshasa. La maison est également proche des attractions locales, ce qui vous permettra d'explorer facilement les sites touristiques et les lieux d'intérêt de la ville.\n\nEn résumé, cette maison combine confort et praticité, offrant une base parfaite pour explorer Kinshasa tout en bénéficiant de tous les équipements nécessaires pour un séjour agréable.",
+        duration: "1 semaine",
     },
     {
         id: "id_9",
@@ -231,6 +255,9 @@ export const listingAppart = [
         saleOff: null,
         isAds: null,
         map: { lat: 55.185907, lng: 61.4864299 },
+        description:
+            "Découvrez cette magnifique maison située à Kinshasa, idéale pour des séjours en famille ou entre amis. Avec ses 7 chambres spacieuses et ses 6 salles de bains, cette maison offre tout le confort nécessaire pour un séjour agréable. La maison est dotée d'un grand jardin et d'une piscine, parfait pour se détendre après une journée de visites. Profitez également de la vue imprenable depuis le balcon au coucher du soleil.\n\nL'intérieur de la maison est décoré avec goût et comprend des équipements modernes pour répondre à tous vos besoins. La cuisine entièrement équipée vous permettra de préparer de délicieux repas, et le salon spacieux est parfait pour se retrouver en famille ou entre amis. Chaque chambre est équipée de lits confortables et de rangements suffisants pour un séjour prolongé.\n\nLa maison est située dans un quartier calme, mais reste proche des principales attractions de Kinshasa. Vous pourrez facilement explorer les environs et découvrir la culture locale. De plus, la maison est équipée d'un système de sécurité pour assurer votre tranquillité d'esprit pendant votre séjour.\n\nPour un séjour inoubliable à Kinshasa, cette maison est le choix parfait. Réservez dès maintenant pour profiter d'une expérience unique dans cette superbe propriété.",
+        duration: "1 semaine",
     },
     {
         id: "id_10",
@@ -259,6 +286,9 @@ export const listingAppart = [
         saleOff: "-10% today",
         isAds: null,
         map: { lat: 55.1735735, lng: 61.4991107 },
+        description:
+            "Cet appartement moderne à Congo Brazza est parfait pour les voyageurs à la recherche de confort et de commodité. Avec ses 2 chambres élégantes et ses 10 salles de bains, cet appartement est idéal pour des séjours en groupe ou en famille. L'appartement offre une vue magnifique sur la ville et est situé à proximité de nombreux restaurants et attractions locales.\n\nL'intérieur de l'appartement est décoré avec des finitions haut de gamme et comprend un salon spacieux avec une télévision à écran plat, une cuisine entièrement équipée avec des appareils modernes, et une salle à manger confortable. Les chambres sont conçues pour offrir un maximum de confort, avec des lits king-size et des draps de haute qualité.\n\nL'appartement dispose également d'une terrasse privée où vous pourrez vous détendre et profiter de la vue sur les environs. Les équipements supplémentaires comprennent une connexion Wi-Fi rapide et un espace de travail, idéal pour les voyageurs d'affaires.\n\nRéservez votre séjour dans cet appartement de luxe pour une expérience inoubliable à Congo Brazza. Avec ses équipements modernes et sa situation centrale, cet appartement est le choix idéal pour explorer la ville tout en bénéficiant d'un hébergement de qualité.",
+        duration: "1 semaine",
     },
     {
         id: "id_11",

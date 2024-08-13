@@ -58,6 +58,7 @@ const Page = () => {
     const [groups, setGroups] = useState(guestsGroups);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredPlaces, setFilteredPlaces] = useState(places);
+    // const [modifyDate, setModifyDate]=useState("");
 
     useEffect(() => {
         if (searchQuery === "") {
