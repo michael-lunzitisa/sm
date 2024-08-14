@@ -13,6 +13,8 @@ import { Colors } from "@/constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import listingsData from "@/assets/data/listings.json";
+import { useLocalSearchParams } from "expo-router";
 
 const Pay = () => {
     const bottomRef = useRef(null);
@@ -20,6 +22,9 @@ const Pay = () => {
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
     // const [modifyDate, setModifyDate]=useState("");
+
+    const { id } = useLocalSearchParams();
+    const listing = listingsData.find((item) => item.id === id);
 
     const handleBottomSheet = (method) => {
         if (showBottomSheet && paymentMethod === method) {
@@ -30,6 +35,7 @@ const Pay = () => {
             setShowBottomSheet(true);
         }
     };
+    // const listing = listingsData[2];
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -41,7 +47,7 @@ const Pay = () => {
                             style={styles.avatarImage}
                         />
                         <View style={styles.infoContainer}>
-                            <Text style={styles.title}>Logement</Text>
+                            <Text style={styles.title}>{listing.name}</Text>
                             <Text style={styles.subtitle}>
                                 Page de Confirmation
                             </Text>

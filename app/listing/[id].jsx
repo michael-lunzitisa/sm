@@ -130,7 +130,12 @@ const Page = () => {
 
                     <TouchableOpacity
                         style={[defaulStyles.btn, { paddingHorizontal: 20 }]}
-                        onPress={() => router.push("(modals)/pay")}
+                        onPress={() =>
+                            router.push({
+                                pathname: "(modals)/pay",
+                                params: { id: listing.id },
+                            })
+                        }
                     >
                         <Text style={defaulStyles.btnText}>Réserver</Text>
                     </TouchableOpacity>
