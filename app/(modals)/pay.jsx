@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ScrollView,
     TextInput,
+    Animated,
 } from "react-native";
 import { defaulStyles } from "../../constants/Styles";
 import { Colors } from "@/constants/Colors";
@@ -15,13 +16,24 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import listingsData from "@/assets/data/listings.json";
 import { useLocalSearchParams } from "expo-router";
+import { FadeIn } from "react-native-reanimated";
 
 const Pay = () => {
     const bottomRef = useRef(null);
     const snapPoints = useMemo(() => ["30%"]);
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
-    // const [modifyDate, setModifyDate]=useState("");
+    const [openCard, setOpenCard] = useState(0); // 0 = pas ouvert, 2 = section de modification des voyageurs ouverte
+    const [groups, setGroups] = useState([
+        { name: "Adultes", text: "13 ans ou plus", count: 0 },
+        { name: "Enfants", text: "Ages 2 - 12", count: 0 },
+        { name: "Bébés", text: "Moins de 2 ans", count: 0 },
+        {
+            name: "Animaux de compagnie",
+            texte: "Animaux autorisés",
+            count: 0,
+        },
+    ]);
 
     const { id } = useLocalSearchParams();
     const listing = listingsData.find((item) => item.id === id);
@@ -35,7 +47,13 @@ const Pay = () => {
             setShowBottomSheet(true);
         }
     };
-    // const listing = listingsData[2];
+
+    const handleOpenCard = () => {
+        setOpenCard(openCard === 2 ? 0 : 2); // Alterner entre ouvert et fermé
+    };
+    const handleClose = () => {
+        setOpenCard(0); // Fermer la section de modification des voyageurs
+    };
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -43,7 +61,7 @@ const Pay = () => {
                 <View style={styles.container}>
                     <View style={styles.row}>
                         <Image
-                            source={require("../../assets/images/user.png")}
+                            source={{ uri: listing.image }}
                             style={styles.avatarImage}
                         />
                         <View style={styles.infoContainer}>
@@ -52,7 +70,9 @@ const Pay = () => {
                                 Page de Confirmation
                             </Text>
                             <View style={styles.ratingContainer}>
-                                <Text style={styles.ratingText}>Rating</Text>
+                                <Text style={styles.ratingText}>
+                                    {listing.rating}
+                                </Text>
                                 <Text style={styles.superHostText}>
                                     SuperHost
                                 </Text>
@@ -79,9 +99,19 @@ const Pay = () => {
                                     <Text style={styles.detailLabel}>
                                         Voyageurs
                                     </Text>
-                                    <Text style={styles.detailValue}>1</Text>
+                                    <Text style={styles.detailValue}>
+                                        {groups.reduce(
+                                            (acc, group) => acc + group.count,
+                                            0
+                                        )}{" "}
+                                        voyageurs
+                                    </Text>
                                 </View>
-                                <Text style={styles.modifyText}>Modifier</Text>
+                                <TouchableOpacity onPress={handleOpenCard}>
+                                    <Text style={styles.modifyText}>
+                                        Modifier
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>
@@ -407,6 +437,139 @@ const Pay = () => {
                 )}
                 {/* BottomSheet FIN */}
             </ScrollView>
+
+            {/* Section de modification des voyageurs */}
+            {openCard === 2 && (
+                <Animated.View
+                    style={[
+                        styles.cardBody,
+                        {
+                            opacity: openCard === 2 ? 1 : 0,
+                        },
+                    ]}
+                >
+                    <Animated.Text entering={FadeIn}>
+                        <View style={styles.cardHeader}>
+                            <TouchableOpacity onPress={handleClose}>
+                                <Ionicons name="close-outline" size={28} />
+                            </TouchableOpacity>
+                            <Text style={styles.headerText}>
+                                Qui vient avec vous ?
+                            </Text>
+                        </View>
+                    </Animated.Text>
+                    <View
+                        style={{
+                            flex: 1,
+                            borderBottomColor: "#333",
+                            borderBottomWidth: StyleSheet.hairlineWidth,
+                            marginBottom: 9,
+                        }}
+                    />
+                    {groups.map((item, index) => (
+                        <View
+                            key={index}
+                            style={[styles.guestsItem, styles.itemborder]}
+                        >
+                            <View>
+                                <Text
+                                    style={{
+                                        fontFamily: "mon-b",
+                                        fontSize: 16,
+                                    }}
+                                >
+                                    {item.name}
+                                </Text>
+                                <Text
+                                    style={{
+                                        fontFamily: "mon",
+                                        fontSize: 12,
+                                        color: Colors.gray,
+                                    }}
+                                >
+                                    {item.text}
+                                </Text>
+                            </View>
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    gap: 10,
+                                }}
+                            >
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        const newGroups = [...groups];
+                                        newGroups[index].count =
+                                            newGroups[index].count > 0
+                                                ? newGroups[index].count - 1
+                                                : 0;
+                                        setGroups(newGroups);
+                                    }}
+                                >
+                                    <Ionicons
+                                        name="remove-circle-outline"
+                                        size={26}
+                                        color={
+                                            groups[index].count > 0
+                                                ? Colors.gray
+                                                : "#cdcdcd"
+                                        }
+                                    />
+                                </TouchableOpacity>
+                                <Text
+                                    style={{
+                                        fontFamily: "mon",
+                                        fontSize: 16,
+                                        textAlign: "center",
+                                        minWidth: 18,
+                                    }}
+                                >
+                                    {item.count}
+                                </Text>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        const newGroups = [...groups];
+                                        newGroups[index].count++;
+                                        setGroups(newGroups);
+                                    }}
+                                >
+                                    <Ionicons
+                                        name="add-circle-outline"
+                                        size={26}
+                                        color={Colors.gray}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    ))}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}
+                    >
+                        <TouchableOpacity onPress={handleClose}>
+                            <Text style={styles.btnText}>Annuler</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[
+                                defaulStyles.btn,
+                                {
+                                    paddingHorizontal: 20,
+                                    paddingRight: 20,
+                                },
+                            ]}
+                            onPress={() => setOpenCard(0)} // Fermer la section de modification
+                        >
+                            <Text style={defaulStyles.btnText}>
+                                Enregistrer
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </Animated.View>
+            )}
         </GestureHandlerRootView>
     );
 };
@@ -433,10 +596,13 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         flexDirection: "column",
+        maxWidth: 270,
+        marginRight: 105,
+        paddingRight: 1,
     },
     title: {
         color: "#000",
-        fontSize: 20,
+        fontSize: 14,
         fontFamily: "mon-b",
     },
     subtitle: {
@@ -496,12 +662,12 @@ const styles = StyleSheet.create({
     detailLabel: {
         fontSize: 16,
         color: Colors.gray,
-        fontFamily: "mon",
+        fontFamily: "mon-sb",
     },
     detailValue: {
         fontSize: 16,
         color: Colors.black,
-        fontFamily: "mon-sb",
+        fontFamily: "mon",
     },
     modifyText: {
         fontSize: 16,
@@ -565,6 +731,33 @@ const styles = StyleSheet.create({
         // right: 10,
         // zIndex: 10,
         marginRight: 30,
+    },
+    cardHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    headerText: {
+        fontWeight: "bold",
+        fontFamily: "mon-b",
+        fontSize: 18,
+        padding: 20,
+    },
+    cardBody: {
+        paddingHorizontal: 20,
+        marginBottom: 20,
+        backgroundColor: "#fff",
+        borderRadius: 20,
+    },
+    guestsItem: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 15,
+    },
+    itemborder: {
+        borderBottomWidth: 1,
+        borderBottomColor: "#ddd",
+        paddingBottom: 10,
     },
 });
 
