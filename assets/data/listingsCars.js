@@ -1,6 +1,6 @@
 export const listingsCars = [
     {
-        id: "9824dd51-14bc-4a05-ba7d-1ca3c3c08bd7",
+        id: "1",
         authorId: 5,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -28,7 +28,7 @@ export const listingsCars = [
         map: { lat: 55.2094559, lng: 61.5594641 },
     },
     {
-        id: "12a181b6-114c-45fa-a0cf-f4285bc7d952",
+        id: "2",
         authorId: 7,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -56,7 +56,7 @@ export const listingsCars = [
         map: { lat: 55.1972153, lng: 61.4407266 },
     },
     {
-        id: "6132eeac-7895-4bc0-8c32-1155f01cd386",
+        id: "3",
         authorId: 9,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -84,7 +84,7 @@ export const listingsCars = [
         map: { lat: 55.247483, lng: 61.5229791 },
     },
     {
-        id: "53912695-20f7-4037-8a11-a99fd2b652cd",
+        id: "4",
         authorId: 4,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -112,7 +112,7 @@ export const listingsCars = [
         map: { lat: 55.2342034, lng: 61.5409607 },
     },
     {
-        id: "5553f2f0-cfc6-4c8e-a6df-14245134fa24",
+        id: "5",
         authorId: 6,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -140,7 +140,7 @@ export const listingsCars = [
         map: { lat: 55.2288039, lng: 61.6050232 },
     },
     {
-        id: "650a163a-e910-43cb-abca-e11ecccbcae4",
+        id: "6",
         authorId: 7,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -168,7 +168,7 @@ export const listingsCars = [
         map: { lat: 55.1952216, lng: 61.6115793 },
     },
     {
-        id: "697dc331-7038-4ee3-ad3f-51ae9536d97e",
+        id: "7",
         authorId: 6,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -196,7 +196,7 @@ export const listingsCars = [
         map: { lat: 55.2211607, lng: 61.5065318 },
     },
     {
-        id: "3e8f789e-fb11-45d2-9afd-2f2740e80411",
+        id: "8",
         authorId: 3,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -224,7 +224,7 @@ export const listingsCars = [
         map: { lat: 55.2126851, lng: 61.4912261 },
     },
     {
-        id: "933ec23b-463e-41dd-9e3c-737ef9b508bb",
+        id: "9",
         authorId: 6,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -252,7 +252,7 @@ export const listingsCars = [
         map: { lat: 55.185907, lng: 61.4864299 },
     },
     {
-        id: "913bca21-1b8e-4321-8e5f-26776875d668",
+        id: "10",
         authorId: 10,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -280,7 +280,7 @@ export const listingsCars = [
         map: { lat: 55.1735735, lng: 61.4991107 },
     },
     {
-        id: "13c7e75e-a892-46e2-85ab-6b65d7976fab",
+        id: "11",
         authorId: 8,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -308,7 +308,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "c9ddbe20-f1f8-4a37-a2d5-9f1b5f3dd35e",
+        id: "12",
         authorId: 3,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -336,7 +336,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "cc7cfa04-e20d-4487-8b2c-10d71a71c7a9",
+        id: "13",
         authorId: 9,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -364,7 +364,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "e00c8d43-f25c-4736-8a9e-4ffe0dbeeb86",
+        id: "14",
         authorId: 5,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -392,7 +392,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "378db053-8191-46ad-a7e0-5a6328f8af21",
+        id: "15",
         authorId: 3,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -420,7 +420,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "3d520211-dffd-4245-9790-15d382a8cb1f",
+        id: "16",
         authorId: 9,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -448,7 +448,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "feac0e7d-3839-4e47-b9b7-0a531daabe4c",
+        id: "17",
         authorId: 9,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -476,7 +476,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "bac8b4a0-c573-4d89-bc91-d53be1cb4e16",
+        id: "18",
         authorId: 9,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -504,7 +504,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "4688ad16-b471-485d-8c20-34c32436607f",
+        id: "19",
         authorId: 8,
         date: "May 20, 2021",
         href: "/listing-car-detail",
@@ -532,7 +532,7 @@ export const listingsCars = [
         map: { lat: 59.955413, lng: 30.337844 },
     },
     {
-        id: "b488141f-bb19-44ba-b121-a838ab377100",
+        id: "20",
         authorId: 6,
         date: "May 20, 2021",
         href: "/listing-car-detail",

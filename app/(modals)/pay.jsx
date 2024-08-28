@@ -6,7 +6,6 @@ import {
     Image,
     StyleSheet,
     ScrollView,
-    TextInput,
     Animated,
 } from "react-native";
 import { defaulStyles } from "../../constants/Styles";
@@ -17,10 +16,14 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import listingsData from "@/assets/data/listings.json";
 import { useLocalSearchParams } from "expo-router";
 import { FadeIn } from "react-native-reanimated";
+import CreditCardInput from "../../components/CreditCardInput";
+import MobileMoney from "../../components/MobileMoney";
+import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 
 const Pay = () => {
     const bottomRef = useRef(null);
-    const snapPoints = useMemo(() => ["30%"]);
+    const snapPoints = useMemo(() => ["35%"]);
     const [showBottomSheet, setShowBottomSheet] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
     const [openCard, setOpenCard] = useState(0); // 0 = pas ouvert, 2 = section de modification des voyageurs ouverte
@@ -34,9 +37,18 @@ const Pay = () => {
             count: 0,
         },
     ]);
-
+    const router = useRouter();
     const { id } = useLocalSearchParams();
     const listing = listingsData.find((item) => item.id === id);
+
+    // Calcul des détails du prix avec vérification des valeurs
+    const numberOfNights = Number(listing?.numberOfNights) || 0;
+    const cleaningFee = Number(listing?.cleaningFee) || 0;
+    const taxes = Number(listing?.taxes) || 0;
+    const pricePerNight = Number(listing?.pricePerNight) || 0;
+
+    const totalPrice = pricePerNight * numberOfNights;
+    const grandTotal = totalPrice + cleaningFee + taxes;
 
     const handleBottomSheet = (method) => {
         if (showBottomSheet && paymentMethod === method) {
@@ -61,13 +73,13 @@ const Pay = () => {
                 <View style={styles.container}>
                     <View style={styles.row}>
                         <Image
-                            source={{ uri: listing.image }}
+                            source={{ uri: listing.featuredImage }}
                             style={styles.avatarImage}
                         />
                         <View style={styles.infoContainer}>
-                            <Text style={styles.title}>{listing.name}</Text>
+                            <Text style={styles.title}>{listing.title}</Text>
                             <Text style={styles.subtitle}>
-                                Page de Confirmation
+                                {listing.titles}
                             </Text>
                             <View style={styles.ratingContainer}>
                                 <Text style={styles.ratingText}>
@@ -150,10 +162,13 @@ const Pay = () => {
                             <View style={styles.detailRow}>
                                 <View>
                                     <Text style={styles.detailLabel}>
-                                        423,90$ x 5 nuits
+                                        {pricePerNight}$ x {numberOfNights}
+                                        nuits
                                     </Text>
                                 </View>
-                                <Text style={styles.modifyText}>2119,50 $</Text>
+                                <Text style={styles.modifyText}>
+                                    {totalPrice} $
+                                </Text>
                             </View>
 
                             <View style={styles.detailRow}>
@@ -162,7 +177,9 @@ const Pay = () => {
                                         Frais de ménage
                                     </Text>
                                 </View>
-                                <Text style={styles.modifyText}>30,00 $</Text>
+                                <Text style={styles.modifyText}>
+                                    {cleaningFee} $
+                                </Text>
                             </View>
                             <View style={styles.detailRow}>
                                 <View>
@@ -170,7 +187,7 @@ const Pay = () => {
                                         Taxes
                                     </Text>
                                 </View>
-                                <Text style={styles.modifyText}>500,00 $</Text>
+                                <Text style={styles.modifyText}>{taxes} $</Text>
                             </View>
                             {/* separatorView */}
                             <View
@@ -202,7 +219,7 @@ const Pay = () => {
                                         { marginTop: 10, fontWeight: "800" },
                                     ]}
                                 >
-                                    2199,50 $
+                                    {grandTotal.toFixed(2)} $
                                 </Text>
                             </View>
                         </View>
@@ -264,7 +281,12 @@ const Pay = () => {
                                 illo maecenas quisqua
                             </Text>
                         </View>
-                        <TouchableOpacity style={defaulStyles.btn}>
+                        <TouchableOpacity
+                            style={defaulStyles.btn}
+                            onPress={() =>
+                                router.push("(modals)/bookingsuccess")
+                            }
+                        >
                             <Text style={defaulStyles.btnText}>
                                 Confirmer et payer
                             </Text>
@@ -308,91 +330,8 @@ const Pay = () => {
                                     }}
                                 >
                                     {/* Le formulaire pour la carte credit */}
-                                    <View>
-                                        <TextInput
-                                            autoCapitalize="none"
-                                            placeholder="Numéro de carte"
-                                            style={[
-                                                styles.input,
-                                                { paddingRight: 200 },
-                                            ]}
-                                        />
-                                        <Ionicons
-                                            name="card-outline"
-                                            size={24}
-                                            color="#9f9f9f"
-                                            style={{
-                                                position: "absolute",
-                                                right: 10,
-                                                top: "50%",
-                                                transform: [
-                                                    { translateY: -12 },
-                                                ],
-                                            }}
-                                        />
-                                    </View>
-                                    <View
-                                        style={{
-                                            flexDirection: "row",
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <TextInput
-                                            autoCapitalize="none"
-                                            placeholder="Date d'expiration"
-                                            style={[
-                                                styles.input,
-                                                { flex: 1, marginRight: 5 },
-                                            ]}
-                                        />
-                                        <TextInput
-                                            autoCapitalize="none"
-                                            placeholder="Cryptogramme"
-                                            style={[
-                                                styles.input,
-                                                { flex: 1, marginLeft: 5 },
-                                            ]}
-                                        />
-                                    </View>
 
-                                    <View>
-                                        <TextInput
-                                            autoCapitalize="none"
-                                            placeholder="Code postal"
-                                            style={[
-                                                styles.input,
-                                                { paddingRight: 200 },
-                                            ]}
-                                        />
-                                    </View>
-                                    <View>
-                                        <View
-                                            style={{
-                                                flexDirection: "row",
-                                                justifyContent: "space-between",
-                                                marginTop: 20,
-                                            }}
-                                        >
-                                            <Text style={styles.btnText}>
-                                                Annuler
-                                            </Text>
-                                            <TouchableOpacity
-                                                style={[
-                                                    defaulStyles.btn,
-                                                    {
-                                                        paddingHorizontal: 20,
-                                                        paddingRight: 20,
-                                                    },
-                                                ]}
-                                            >
-                                                <Text
-                                                    style={defaulStyles.btnText}
-                                                >
-                                                    Terminé
-                                                </Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
+                                    <CreditCardInput />
                                 </View>
                             )}
                             {paymentMethod === "mobile" && (
@@ -403,33 +342,7 @@ const Pay = () => {
                                     }}
                                 >
                                     {/* Le formulaire pour le Mobile Money */}
-
-                                    <View style={{ marginVertical: 30 }}>
-                                        <TextInput
-                                            autoCapitalize="none"
-                                            placeholder="Numéro de téléphone"
-                                            style={[
-                                                styles.input,
-                                                {
-                                                    paddingRight: 180,
-                                                    marginTop: 20,
-                                                },
-                                            ]}
-                                        />
-
-                                        <TouchableOpacity
-                                            style={[
-                                                defaulStyles.btn,
-                                                { marginTop: 20 },
-                                            ]}
-                                        >
-                                            <Text
-                                                style={[defaulStyles.btnText]}
-                                            >
-                                                valider
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </View>
+                                    <MobileMoney />
                                 </View>
                             )}
                         </View>

@@ -97,9 +97,20 @@ export default function RootLayout() {
               ) 
             }} 
           />
-
-
-
+          <Stack.Screen 
+            name="(modals)/bookingsuccess" 
+            options={{ 
+              title: "Félicitation",
+              headerTitleStyle: { fontFamily: "mon-sb" },
+              presentation: "modal",
+              headerTransparent:false,
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 40, marginLeft:10, }}>
+                  <Ionicons name='close-outline' size={28}/>
+                </TouchableOpacity>
+              ) 
+            }} 
+          />
         </Stack>
       </View>
      </AuthProvider>

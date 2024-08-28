@@ -32,6 +32,18 @@ const ModalHeaderText = () => {
                     Expériences
                 </Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActive(2)}>
+                <Text
+                    style={{
+                        fontFamily: "mon-sb",
+                        fontSize: 18,
+                        color: active === 2 ? "#000" : Colors.gray,
+                        textDecorationLine: active === 2 ? "underline" : "none",
+                    }}
+                >
+                    Cars
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 };

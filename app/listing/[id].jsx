@@ -23,11 +23,11 @@ const Page = () => {
     const shareList = async () => {
         try {
             await Share.share({
-                title: listing.name,
+                title: listing.title,
                 url: listing.listing_url,
             });
         } catch (error) {
-            console.log(err);
+            console.log(error);
         }
     };
 
@@ -84,21 +84,24 @@ const Page = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: listing.image }} style={styles.image} />
+            <Image
+                source={{ uri: listing.featuredImage }}
+                style={styles.image}
+            />
             <View style={styles.infoContainer}>
-                <Text style={styles.name}>{listing.name}</Text>
+                <Text style={styles.name}>{listing.title}</Text>
                 <Text style={styles.location}>
                     {listing.room_type} in {listing.smart_location}
                 </Text>
                 <Text style={styles.rooms}>
-                    {listing.guest_include} 1 guest {listing.bedrooms} 2
-                    bedrooms.
-                    {listing.bathrooms} 5 bathrooms
+                    {listing.maxGuests} voyageurs. {listing.bedrooms} chambres.
+                    {listing.bed} lits. {listing.bathrooms} salles de bains
                 </Text>
                 <View style={{ flexDirection: "row", gap: 4 }}>
                     <Ionicons name="star" size={16} />
                     <Text style={styles.ratings}>
-                        {listing.rating / 20}.{listing.number_of_reviews}
+                        {listing.rating}.{listing.reviewStart}
+                        {/* {listing.rating / 20}.{listing.reviewStart} */}
                         reviews
                     </Text>
                 </View>
@@ -106,14 +109,14 @@ const Page = () => {
 
                 <View style={styles.hostView}>
                     <Image
-                        source={{ uri: listing.image }}
+                        source={{ uri: listing.featuredImage }}
                         style={styles.host}
                     />
                     <View>
                         <Text style={{ fontWeight: "500", fontSize: 16 }}>
-                            hosted by {listing.host_name}
+                            Hôte: {listing.host_name}
                         </Text>
-                        <Text>host since {listing.host_since}</Text>
+                        <Text>{listing.host_since}</Text>
                     </View>
                 </View>
                 <View style={styles.divider} />

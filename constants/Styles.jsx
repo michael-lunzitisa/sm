@@ -42,14 +42,3 @@ export const defaulStyles = StyleSheet.create({
         borderTopWidth: StyleSheet.hairlineWidth,
     },
 });
-
-// cardHeader: {
-//         fontWeight: "bold",
-//         fontFamily: "mon-b",
-//         fontSize: 18,
-//         padding: 20,
-//     },
-//     cardBody: {
-//         paddingHorizontal: 20,
-//         marginBottom: 20,
-//     },

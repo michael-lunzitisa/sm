@@ -31,9 +31,9 @@ const Layout = () => {
                 name="whishlists"
                 options={{
                     tabBarLabel: "Favoris",
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ color, size, focused }) => (
                         <Ionicons
-                            name="heart-outline"
+                            name={focused ? "heart" : "heart-outline"}
                             color={color}
                             size={size}
                         />

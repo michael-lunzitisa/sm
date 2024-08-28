@@ -1,44 +1,40 @@
  [
     {
-        "id": "1",
-        "date": "May 20, 2021",
-        "href": "/listing-stay-detail",
-        "listingCategoryId": 17,
-        "title": "Appartement. Kinshasa ",
-        "titles": "Sortie prévu le 24 septembre",
-        "favorites":false,
-        "host_name": "janne Smith",
-        "badge_host":"superhôte",
-        "host_since": "Hôte depuis 12 ans",
-        "categories": "appart",
-         "profile_image": "https://cdn.pixabay.com/photo/2023/01/24/10/02/woman-7740613_1280.jpg",
-        "featuredImage":
-            "https://images.pexels.com/photos/5563472/pexels-photo-5563472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "galleryImgs": [
-            "https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            "https://images.pexels.com/photos/1179156/pexels-photo-1179156.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            "https://images.pexels.com/photos/2506988/pexels-photo-2506988.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            "https://images.pexels.com/photos/2373201/pexels-photo-2373201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-        ],
-        "commentCount": 70,
-        "viewCount": 602,
-        "like": false,
-        "price": "$26",
-        "maxGuests": 6,
-        "bedrooms": 10,
-        "bathrooms": 3,
-        "bed": 8,
-        "isAds": null,
-        "map": { "lat": 55.2094559, "lng": 61.5594641 },"rating": 4.1,
-        "description":
-            "Ce superbe appartement situé en plein cœur de Kinshasa offre une expérience unique et inoubliable. Le décor moderne, associé à des équipements de qualité, vous garantit un séjour agréable. L'appartement dispose de toutes les commodités nécessaires pour votre confort, y compris une cuisine entièrement équipée, un espace de vie spacieux, et une vue imprenable sur la ville. Que vous soyez ici pour affaires ou pour le plaisir, cet appartement est l'endroit idéal pour se détendre après une longue journée de travail ou de visites.",
-        "duration": "3 nuits",
-        "pricePerNight": 425,
-        "numberOfNights": 5,
-        "cleaningFee": 30,
-        "taxes": 500
-        
-    },
+  "id": "1",
+  "date": "May 20, 2021",
+  "href": "/listing-stay-detail",
+  "listingCategoryId": 17,
+  "title": "Appartement. Kinshasa",
+  "titles": "Sortie prévu le 24 septembre",
+  "featuredImage": "https://images.pexels.com/photos/5563472/pexels-photo-5563472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "galleryImgs": [
+    "https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/1179156/pexels-photo-1179156.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/2506988/pexels-photo-2506988.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/2373201/pexels-photo-2373201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+  ],
+  "commentCount": 70,
+  "viewCount": 602,
+  "like": false,
+  "price": "$26",
+  "maxGuests": 6,
+  "bedrooms": 10,
+  "bathrooms": 3,
+  "isAds": null,
+  "map": { "lat": 55.2094559, "lng": 61.5594641 },
+  "rating": 4.1,
+  "description": "Ce superbe appartement situé en plein cœur de Kinshasa offre une expérience unique et inoubliable. Le décor moderne, associé à des équipements de qualité, vous garantit un séjour agréable. L'appartement dispose de toutes les commodités nécessaires pour votre confort, y compris une cuisine entièrement équipée, un espace de vie spacieux, et une vue imprenable sur la ville. Que vous soyez ici pour affaires ou pour le plaisir, cet appartement est l'endroit idéal pour se détendre après une longue journée de travail ou de visites.",
+  "duration": "3 nuits",
+  "host": {
+    "id": "1",
+    "name": "Janne yima",
+    "profile_image": "https://cdn.pixabay.com/photo/2020/04/30/12/59/man-5112776_1280.jpg",
+    "bio": "Un passionné de voyages et d'aventures, j'aime accueillir des invités du monde entier et leur faire découvrir la beauté de Kinshasa.",
+    "location": "Kinshasa, RDC",
+    "rating": 4.8
+  }
+}
+,
     {
         "id": "2",
         "date": "May 20, 2021",
@@ -46,12 +42,6 @@
         "listingCategoryId": 9,
         "title": "chambre . Lubumbashi ",
         "titles": "Sortie prévu le 24 septembre",
-        "host_name": "Michelein Doe",
-        "categories": "chambres",
-         "favorites":false,
-        "host_since": "Hôte depuis depuis 4 ans",
-        "badge_host":"superhôte",
-         "profile_image": "https://cdn.pixabay.com/photo/2023/01/24/10/02/woman-7740613_1280.jpg",
         "featuredImage":
             "https://images.pexels.com/photos/2565222/pexels-photo-2565222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -65,7 +55,6 @@
         "like": false,
         "price": "$250",
         "maxGuests": 10,
-        "bed": 8,
         "bedrooms": 6,
         "bathrooms": 7,
         "isAds": null,
@@ -73,23 +62,23 @@
         "description":
             "Découvrez un havre de paix au cœur de Lubumbashi. Cette charmante chambre est nichée dans un quartier calme, offrant à ses occupants un espace serein pour se détendre. Les couleurs douces et l'ameublement confortable créent une ambiance chaleureuse et accueillante, parfaite pour une évasion de la routine quotidienne.\n\nProfitez de la proximité de toutes les commodités locales, tout en ayant la sensation d'être loin du tumulte de la ville. Que vous soyez ici pour affaires ou pour le plaisir, vous trouverez tout ce dont vous avez besoin à quelques pas. La chambre est équipée de tout le confort moderne, assurant un séjour agréable.\n\nLa maison dispose d'une vaste galerie d'images qui vous permet de découvrir chaque recoin de ce charmant refuge avant votre arrivée. Avec six chambres spacieuses et sept salles de bains, il y a amplement d'espace pour accueillir jusqu'à dix personnes. C'est l'endroit idéal pour les groupes d'amis ou les familles nombreuses.\n\nNe manquez pas l'opportunité de séjourner dans ce lieu exceptionnel où chaque détail a été soigneusement pensé pour maximiser votre confort. Avec une disponibilité limitée, réservez dès maintenant pour vous assurer un séjour inoubliable à Lubumbashi.",
         "duration": "1 semaine",
-        "pricePerNight": 100,
-        "numberOfNights": 5,
-        "cleaningFee": 15,
-        "taxes": 350
+        "host":{
+            "id": "2",
+            "name": "Jane Smith",
+            "profile_image": "https://cdn.pixabay.com/photo/2023/11/10/02/30/woman-8378634_1280.jpg",
+            "bio": "Une hôte attentionnée, je suis ravie de partager mon espace confortable avec des voyageurs en quête de nouvelles expériences.",
+            "location": "Lubumbashi, RDC",
+            "rating": 4.7
+        }
+        
     },
     {
         "id": "3",
         "date": "May 20, 2021",
         "href": "/listing-stay-detail",
-         "favorites":false,
         "listingCategoryId": 11,
         "title": "Maison. Kinshasa ",
-        "categories": "maison",
         "titles": "Sortie prévu le 24 septembre",
-         "host_name": "Michel ",
-          "badge_host":"superhôte",
-        "host_since": "Superhôte.Hôte depuis depuis 5 ans",
         "featuredImage":
             "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -105,30 +94,20 @@
         "maxGuests": 9,
         "bedrooms": 9,
         "bathrooms": 8,
-        "bed": 8,
-        
         "saleOff": null,
         "isAds": null,
         "map": { "lat": 55.247483, "lng": 61.5229791 },"rating": 4.3,
         "description":
             "Cette magnifique maison située à Kinshasa offre un cadre de vie exceptionnel, avec une vue imprenable sur la ville. Conçue pour offrir un maximum de confort, elle dispose de neuf chambres spacieuses, chacune équipée d'une salle de bain privée. La maison est décorée avec goût, alliant modernité et tradition congolaise, ce qui crée une ambiance chaleureuse et accueillante.\n\nLes espaces communs comprennent un grand salon, une salle à manger élégante, et une cuisine entièrement équipée pour préparer des repas en famille ou entre amis. Le jardin est un véritable havre de paix, idéal pour se détendre après une journée bien remplie à explorer la ville. Les hôtes peuvent également profiter d'une piscine privée, parfaite pour se rafraîchir durant les chaudes journées d'été.\n\nLa maison est située dans un quartier calme et sécurisé de Kinshasa, à proximité des principales attractions touristiques, des restaurants, et des centres commerciaux. C'est l'endroit idéal pour les familles ou les groupes d'amis cherchant à passer un séjour inoubliable en République Démocratique du Congo.\n\nQue vous soyez en voyage d'affaires ou en vacances, cette maison répondra à toutes vos attentes. Avec ses équipements de haute qualité et son emplacement privilégié, elle vous garantit un séjour des plus agréables.",
-        "duration": "2 semaine",
-        "pricePerNight": 150,
-        "numberOfNights": 5,
-        "cleaningFee": 10,
-        "taxes": 30
+        "duration": "2 semaine"
     },
     {
         "id": "4",
         "date": "May 20, 2021",
         "href": "/listing-stay-detail",
         "listingCategoryId": 6,
-         "favorites":false,
         "title": "Appartement. Kinshasa ",
-        "categories": "appart",
         "titles": "Sortie prévu le 24 septembre",
-         "host_name": "Marrie Luiz ",
-        "host_since": "Superhôte.Hôte depuis depuis 9 ans",
         "featuredImage":
             "https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -144,17 +123,20 @@
         "maxGuests": 6,
         "bedrooms": 7,
         "bathrooms": 5,
-        "bed": 8,
         "saleOff": null,
         "isAds": null,
         "map": { "lat": 55.2342034, "lng": 61.5409607 },"rating": 4.5,
         "description":
             "Cet appartement confortable situé au cœur de Kinshasa est parfait pour ceux qui recherchent un hébergement pratique et abordable. Avec sept chambres à coucher et cinq salles de bain, il peut accueillir jusqu'à six personnes, ce qui en fait un excellent choix pour les familles ou les petits groupes d'amis. L'appartement est décoré de manière simple mais élégante, offrant tout le nécessaire pour un séjour agréable.\n\nL'appartement dispose d'une cuisine fonctionnelle où vous pouvez préparer vos repas, ainsi qu'un salon confortable où vous pouvez vous détendre après une journée de visite. Les chambres sont équipées de lits confortables et de rangements suffisants pour vos effets personnels. La salle de bain principale est spacieuse et équipée d'une douche moderne.\n\nSitué dans un quartier animé de Kinshasa, cet appartement offre un accès facile aux transports en commun, aux restaurants, et aux boutiques. Vous serez également proche de plusieurs sites touristiques et culturels, ce qui vous permettra de découvrir tout ce que la ville a à offrir. L'emplacement est idéal pour explorer Kinshasa tout en profitant d'un hébergement confortable.\n\nQue vous soyez ici pour le travail ou pour le plaisir, cet appartement répondra à vos besoins. Il offre un excellent rapport qualité-prix et constitue une base idéale pour découvrir Kinshasa et ses environs.",
         "duration": "1 semaine",
-        "pricePerNight": 250,
-        "numberOfNights": 3,
-        "cleaningFee": 50,
-        "taxes": 450
+        "host":{
+            "id": "4",
+            "name": "Robert Johnson",
+            "profile_image": "https://cdn.pixabay.com/photo/2023/01/24/10/02/woman-7740613_1280.jpg",
+            "bio": "Architecte et hôte passionné, j'aime accueillir des invités dans mes propriétés uniques et modernes.",
+            "location": "Goma, RDC",
+            "rating": 4.6
+    }
     },
     {
         "id": "5",
@@ -162,9 +144,7 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 11,
         "title": "chambre . Lubumbashi ",
-        "categories": "chambres",
         "titles": "Sortie prévu le 24 septembre",
-          "badge_host":"superhôte",
         "featuredImage":
             "https://images.pexels.com/photos/1001965/pexels-photo-1001965.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -178,7 +158,6 @@
         "like": false,
         "price": "$147",
         "maxGuests": 8,
-        "bed": 4,
         "bedrooms": 3,
         "bathrooms": 2,
         "saleOff": null,
@@ -192,10 +171,8 @@
         "id": "6",
         "date": "May 20, 2021",
         "href": "/listing-stay-detail",
-        
         "listingCategoryId": 7,
         "title": "Villa . Kinshasa ",
-        "categories": "villa",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/5563469/pexels-photo-5563469.jpeg?auto=compress&cs=tinysrgb&w=600",
@@ -225,7 +202,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 20,
         "title": "Appartement. Kinshasa ",
-        "categories": "appart",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/5029310/pexels-photo-5029310.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -254,7 +230,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 10,
         "title": "Maison. Kinshasa ",
-        "categories": "maison",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/2889618/pexels-photo-2889618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -285,7 +260,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 8,
         "title": "Maison. Kinshasa ",
-        "categories": "maison",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/1145257/pexels-photo-1145257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -317,7 +291,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 1,
         "title": "Appartement. Congo Brazza ",
-        "categories": "appart",
         "titles": "Sortie prévu le 26 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/2506990/pexels-photo-2506990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -349,7 +322,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 19,
         "title": "chambre . Lubumbashi ",
-        "categories": "chambres",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/2134224/pexels-photo-2134224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -381,7 +353,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 4,
         "title": "Villa . Kinshasa ",
-        "categories": "villa",
         "titles": "Sortie prévu le 24 septembre",
         "featuredImage":
             "https://images.pexels.com/photos/5007356/pexels-photo-5007356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -505,7 +476,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 19,
         "title": "Tumbling Weir Hotel ",
-        "categories": "appart",
         "featuredImage":
             "https://images.pexels.com/photos/3201919/pexels-photo-3201919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -538,7 +508,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 9,
         "title": "Saracens Head Hotel by Greene King Inns ",
-        "categories": "maison",
         "featuredImage":
             "https://images.pexels.com/photos/6782574/pexels-photo-6782574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -572,7 +541,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 19,
         "title": "The Chantry ",
-        "categories": "appart",
         "featuredImage":
             "https://images.pexels.com/photos/312997/pexels-photo-312997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [
@@ -604,7 +572,6 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 13,
         "title": "Littledean House Hotel ",
-        "categories": "maison",
         "featuredImage":
             "https://images.pexels.com/photos/1529034/pexels-photo-1529034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [

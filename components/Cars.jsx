@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const ModifyDate = () => {
+const Cars = () => {
     return (
         <View>
-            <Text>ModifyDate</Text>
+            <Text>Cars</Text>
         </View>
     );
 };
 
-export default ModifyDate;
+export default Cars;

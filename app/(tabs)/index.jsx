@@ -8,15 +8,16 @@ import { useState } from "react";
 const Page = () => {
     const [category, setCategory] = useState("Maison");
 
-    const onDataChanged = (category) => {
-        setCategory(category);
-        console.log("CHANG", category);
+    const onDataChanged = (newCategory) => {
+        setCategory(newCategory);
+        // console.log("Category Changed:", newCategory);
     };
 
-    // Filtrage des données en fonction de la catégorie sélectionnée
-    const dataFilter = listingsData?.filter(
-        (item) => item.categories === category
+    const filteredData = listingsData?.filter(
+        (item) => item.categories?.toLowerCase() === category.toLowerCase()
     );
+
+    // console.log("Filtered Data:", filteredData);
 
     return (
         <View style={{ flex: 1 }}>
@@ -27,8 +28,13 @@ const Page = () => {
                     ),
                 }}
             />
-            <Listings listings={listingsData} category={category} />
-            {/* <ListingsMap listings={listingsDataGeo} /> */}
+            {filteredData.length > 0 ? (
+                <Listings listings={filteredData} category={category} />
+            ) : (
+                <View>
+                    <Text>Aucune donnée trouvée pour cette catégorie</Text>
+                </View>
+            )}
         </View>
     );
 };

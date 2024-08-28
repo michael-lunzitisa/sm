@@ -59,6 +59,25 @@ const Page = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredPlaces, setFilteredPlaces] = useState(places);
 
+    // useEffect(() => {
+    //     if (searchQuery === "") {
+    //         setFilteredPlaces(places);
+    //     } else {
+    //         setFilteredPlaces(
+    //             places.filter(
+    //                 (place) =>
+    //                     // Ajoutez ici la logique pour filtrer par destination ou localisation
+    //                     place.title
+    //                         .toLowerCase()
+    //                         .includes(searchQuery.toLowerCase()) ||
+    //                     place.location
+    //                         .toLowerCase()
+    //                         .includes(searchQuery.toLowerCase())
+    //             )
+    //         );
+    //     }
+    // }, [searchQuery]);
+
     useEffect(() => {
         if (searchQuery === "") {
             setFilteredPlaces(places);
