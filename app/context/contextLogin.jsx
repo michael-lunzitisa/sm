@@ -3,14 +3,18 @@ import React, { createContext, useState, useContext } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState("");
 
-    const login = () => {
-        setUser(true);
+    const login = (email, password) => {
+        if (email === "mickaellunzola@gmail.com" && password === "Mdk") {
+            setUser({ email, password });
+            return true;
+        }
+        return false;
     };
 
     const logout = () => {
-        setUser(false);
+        setUser(null);
     };
 
     return (
@@ -20,7 +24,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Créer un hook personnalisé pour utiliser le contexte
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

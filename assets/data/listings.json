@@ -660,7 +660,34 @@
         "description":
             "Cet appartement moderne à Congo Brazza est parfait pour les voyageurs à la recherche de confort et de commodité. Avec ses 2 chambres élégantes et ses 10 salles de bains, cet appartement est idéal pour des séjours en groupe ou en famille. L'appartement offre une vue magnifique sur la ville et est situé à proximité de nombreux restaurants et attractions locales.\n\nL'intérieur de l'appartement est décoré avec des finitions haut de gamme et comprend un salon spacieux avec une télévision à écran plat, une cuisine entièrement équipée avec des appareils modernes, et une salle à manger confortable. Les chambres sont conçues pour offrir un maximum de confort, avec des lits king-size et des draps de haute qualité.\n\nL'appartement dispose également d'une terrasse privée où vous pourrez vous détendre et profiter de la vue sur les environs. Les équipements supplémentaires comprennent une connexion Wi-Fi rapide et un espace de travail, idéal pour les voyageurs d'affaires.\n\nRéservez votre séjour dans cet appartement de luxe pour une expérience inoubliable à Congo Brazza. Avec ses équipements modernes et sa situation centrale, cet appartement est le choix idéal pour explorer la ville tout en bénéficiant d'un hébergement de qualité.",
         "duration": "1 semaine"
+    },{
+          "id": "21",
+        "authorId": 7,
+        "date": "May 20, 2021",
+        "href": "/listing-car-detail",
+        "listingCategoryId": 18,
+        "categories": "voiture",
+        "title": "KONA Electric",
+        "featuredImage":
+            "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dwc1e10094/images/vfast/Hinh-anh-Thong-so-xe-VinFast-Fadil-cac-mau.png",
+        "galleryImgs": [
+            "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dwc1e10094/images/vfast/Hinh-anh-Thong-so-xe-VinFast-Fadil-cac-mau.png"
+           
+        ],
+        "commentCount": 40,
+        "viewCount": 902,
+        "like": true,
+        "address": "2606 Straubel Crossing",
+        "reviewStart": 4.6,
+        "reviewCount": 217,
+        "price": "$382",
+        "gearshift": "Auto gearbox",
+        "seats": 4,
+        "saleOff": null,
+        "isAds": null,
+        "map": { "lat": 55.1972153, "lng": 61.4407266 }
     }
+    
     
        
 ]

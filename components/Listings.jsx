@@ -21,7 +21,7 @@ const Listings = ({ listings, category }) => {
         const timer = setTimeout(() => {
             setLoading(true);
         }, 2000);
-        return () => clearTimeout(timer); // Clean up timeout on component unmount
+        return () => clearTimeout(timer);
     }, [category]);
 
     useEffect(() => {}, [favorites]);

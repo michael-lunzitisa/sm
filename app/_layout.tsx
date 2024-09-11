@@ -9,9 +9,6 @@ import ModalHeaderText from "../components/ModalHeaderText";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import  {AuthProvider} from "../app/context/contextLogin"
 
-
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
