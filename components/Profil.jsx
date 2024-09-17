@@ -28,7 +28,7 @@ const Profil = () => {
                             marginTop: 12,
                         }}
                     >
-                        <Text style={{ fontSize: 16 }}>{user.email}</Text>
+                        <Text style={{ fontSize: 20 }}>{user.email}</Text>
                     </View>
                     <View>
                         <Text style={{ fontSize: 16 }}>{user.password}</Text>

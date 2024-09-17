@@ -3,6 +3,7 @@
         "id": "1",
         "date": "May 20, 2021",
         "href": "/listing-stay-detail",
+        "location":"Congo",
         "listingCategoryId": 17,
         "title": "Appartement. Kinshasa ",
         "titles": "Sortie prévu le 24 septembre",
@@ -45,6 +46,7 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 9,
         "title": "chambre . Lubumbashi ",
+        "location":"Congo",
         "titles": "Sortie prévu le 24 septembre",
         "host_name": "Michelein Doe",
         "categories": "chambres",
@@ -85,6 +87,7 @@
          "favorites":false,
         "listingCategoryId": 11,
         "title": "Maison. Kinshasa ",
+          "location":"Congo",
         "categories": "maison",
         "titles": "Sortie prévu le 24 septembre",
          "host_name": "Michel ",
@@ -125,6 +128,7 @@
         "listingCategoryId": 6,
          "favorites":false,
         "title": "Appartement. Kinshasa ",
+          "location":"Congo",
         "categories": "appart",
         "titles": "Sortie prévu le 24 septembre",
          "host_name": "Marrie Luiz ",
@@ -317,6 +321,7 @@
         "href": "/listing-stay-detail",
         "listingCategoryId": 1,
         "title": "Appartement. Congo Brazza ",
+         "location":"Congo Brazza",
         "categories": "appart",
         "titles": "Sortie prévu le 26 septembre",
         "featuredImage":
@@ -506,6 +511,7 @@
         "listingCategoryId": 19,
         "title": "Tumbling Weir Hotel ",
         "categories": "appart",
+        
         "featuredImage":
             "https://images.pexels.com/photos/3201919/pexels-photo-3201919.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "galleryImgs": [

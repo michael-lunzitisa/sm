@@ -136,7 +136,7 @@ const CreditCardInput = () => {
                     )}
                 />
                 {errors.cardNumber && (
-                    <Text style={{ color: "red" }}>
+                    <Text style={styles.errorText}>
                         {errors.cardNumber.message}
                     </Text>
                 )}
@@ -218,7 +218,7 @@ const CreditCardInput = () => {
                     )}
                 />
                 {errors.postalCode && (
-                    <Text style={{ color: "red" }}>
+                    <Text style={styles.errorText}>
                         {errors.postalCode.message}
                     </Text>
                 )}
@@ -265,6 +265,11 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         fontSize: 16,
         fontFamily: "mon-b",
+    },
+    errorText: {
+        color: "red",
+        fontSize: 12,
+        marginBottom: 10,
     },
 });
 
