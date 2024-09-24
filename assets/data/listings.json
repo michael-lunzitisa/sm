@@ -2,6 +2,8 @@
     {
         "id": "1",
         "date": "May 20, 2021",
+        "arrivalDate": "2024-09-21", 
+        "endDate": "2024-09-24",
         "href": "/listing-stay-detail",
         "location":"Congo",
         "listingCategoryId": 17,

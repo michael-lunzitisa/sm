@@ -4,7 +4,18 @@ import { Colors } from "@/constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-const BookingSuccess = () => {
+const BookingSuccess = ({ arrivalDate, endDate }) => {
+    const formatDateRange = (startDate, endDate) => {
+        const start = new Date(startDate).toLocaleDateString("fr-FR", {
+            month: "short",
+            day: "numeric",
+        });
+        const end = new Date(endDate).toLocaleDateString("fr-FR", {
+            month: "short",
+            day: "numeric",
+        });
+        return `${start} - ${end}`;
+    };
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>

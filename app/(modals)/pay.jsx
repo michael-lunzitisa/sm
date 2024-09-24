@@ -20,6 +20,7 @@ import CreditCardInput from "../../components/CreditCardInput";
 import MobileMoney from "../../components/MobileMoney";
 import { Link } from "expo-router";
 import { useRouter } from "expo-router";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const Pay = () => {
     const bottomRef = useRef(null);
@@ -40,6 +41,9 @@ const Pay = () => {
     const router = useRouter();
     const { id } = useLocalSearchParams();
     const listing = listingsData.find((item) => item.id === id);
+    const [arrivalDate, setArrivalDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     // Calcul des détails du prix avec vérification des valeurs
     const numberOfNights = Number(listing?.numberOfNights) || 0;
@@ -65,6 +69,34 @@ const Pay = () => {
     };
     const handleClose = () => {
         setOpenCard(0); // Fermer la section de modification des voyageurs
+    };
+
+    const formatDateRange = (startDate, endDate) => {
+        if (startDate && endDate) {
+            const start = new Date(startDate).toLocaleDateString("fr-FR", {
+                month: "short",
+                day: "numeric",
+            });
+            const end = new Date(endDate).toLocaleDateString("fr-FR", {
+                month: "short",
+                day: "numeric",
+            });
+            return `${start} - ${end}`;
+        }
+        return "Sélectionnez une date";
+    };
+
+    const handleDateChange = (event, selectedDate) => {
+        setShowDatePicker(false);
+        if (!arrivalDate) {
+            setArrivalDate(selectedDate);
+        } else {
+            setEndDate(selectedDate);
+        }
+    };
+
+    const showDatePickerHandler = () => {
+        setShowDatePicker(true);
     };
 
     return (
@@ -100,11 +132,34 @@ const Pay = () => {
                                 <View>
                                     <Text style={styles.detailLabel}>Date</Text>
                                     <Text style={styles.detailValue}>
-                                        12-17 sept
+                                        {arrivalDate && endDate
+                                            ? formatDateRange(
+                                                  arrivalDate,
+                                                  endDate
+                                              )
+                                            : formatDateRange(
+                                                  new Date(),
+                                                  new Date()
+                                              )}
                                     </Text>
                                 </View>
-                                <Text style={styles.modifyText}>Modifier</Text>
+                                <TouchableOpacity
+                                    onPress={showDatePickerHandler}
+                                >
+                                    <Text style={styles.modifyText}>
+                                        Modifier
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
+                            {showDatePicker && (
+                                <DateTimePicker
+                                    value={arrivalDate || new Date()}
+                                    mode="date"
+                                    display="default"
+                                    onChange={handleDateChange}
+                                    minimumDate={new Date()}
+                                />
+                            )}
 
                             <View style={styles.detailRow}>
                                 <View>

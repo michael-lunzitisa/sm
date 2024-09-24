@@ -49,6 +49,7 @@ const guestsGroups = [
 
 const Page = () => {
     const navigation = useNavigation();
+
     const [openCard, setOpenCard] = useState(2);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [arrivalDate, setArrivalDate] = useState(null);

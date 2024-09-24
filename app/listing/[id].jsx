@@ -8,17 +8,19 @@ import {
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
-import listingsData from "@/assets/data/listings.json";
+import listingsData from "../../assets/data/listings.json";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants/Colors";
-import { defaulStyles } from "@/constants/Styles";
+import { Colors } from "../../constants/Colors";
+import { defaulStyles } from "../../constants/Styles";
 import Animated, { SlideInDown } from "react-native-reanimated";
+import { useAuth } from "../context/contextLogin";
 
 const Page = () => {
     const { id } = useLocalSearchParams();
     const listing = listingsData.find((item) => item.id === id);
     const router = useRouter();
     const navigation = useNavigation();
+    const { user } = useAuth(); // Récupérer l'utilisateur du contexte
 
     const shareList = async () => {
         try {
@@ -28,6 +30,19 @@ const Page = () => {
             });
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const handleReservation = () => {
+        if (user) {
+            // L'utilisateur est connecté, ouvrir le modal de paiement
+            router.push({
+                pathname: "(modals)/pay",
+                params: { id: listing.id },
+            });
+        } else {
+            // L'utilisateur n'est pas connecté, rediriger vers l'écran de connexion
+            router.push("/login");
         }
     };
 
@@ -100,9 +115,7 @@ const Page = () => {
                 <View style={{ flexDirection: "row", gap: 4 }}>
                     <Ionicons name="star" size={16} />
                     <Text style={styles.ratings}>
-                        {listing.rating}.{listing.reviewStart}
-                        {/* {listing.rating / 20}.{listing.reviewStart} */}
-                        reviews
+                        {listing.rating}.{listing.reviewStart} reviews
                     </Text>
                 </View>
                 <View style={styles.divider} />
@@ -140,12 +153,7 @@ const Page = () => {
 
                     <TouchableOpacity
                         style={[defaulStyles.btn, { paddingHorizontal: 20 }]}
-                        onPress={() =>
-                            router.push({
-                                pathname: "(modals)/pay",
-                                params: { id: listing.id },
-                            })
-                        }
+                        onPress={handleReservation} // Appeler la fonction de gestion
                     >
                         <Text style={defaulStyles.btnText}>Réserver</Text>
                     </TouchableOpacity>

@@ -50,7 +50,7 @@ const Whishlists = () => {
                     keyExtractor={(item) => item.id.toString()}
                 />
             ) : (
-                <Text>No items in your wishlist</Text>
+                <Text>Aucun élément dans votre liste de favorites</Text>
             )}
         </View>
     );

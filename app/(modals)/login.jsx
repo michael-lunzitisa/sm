@@ -5,21 +5,50 @@ import {
     TouchableOpacity,
     Text,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "expo-router";
 import { defaulStyles } from "../../constants/Styles";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../context/contextLogin";
 
 const Page = () => {
+    const { login, user } = useAuth();
+    const router = useRouter();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async () => {
+        try {
+            login(email, password);
+
+            if (user) {
+                router.push("/(tabs)/whishlist");
+            }
+            console.log("Erreur", "Email ou mot de passe incorrect");
+        } catch (error) {
+            console.log("Une erreur s'est produite lors de la connexion");
+        }
+    };
+
     return (
         <View style={styles.container}>
             <TextInput
                 autoCapitalize="none"
                 placeholder="Email"
+                value={email}
+                onChangeText={setEmail}
+                style={[defaulStyles.inputField, { marginBottom: 20 }]}
+            />
+            <TextInput
+                secureTextEntry
+                placeholder="Mot de passe"
+                value={password}
+                onChangeText={setPassword}
                 style={[defaulStyles.inputField, { marginBottom: 30 }]}
             />
-            <TouchableOpacity style={defaulStyles.btn}>
-                <Text style={defaulStyles.btnText}>Contunuer</Text>
+            <TouchableOpacity onPress={handleLogin} style={defaulStyles.btn}>
+                <Text style={defaulStyles.btnText}>Continuer</Text>
             </TouchableOpacity>
 
             <View style={styles.separatorView}>
@@ -87,7 +116,7 @@ const styles = StyleSheet.create({
         marginVertical: 30,
     },
     separator: {
-        fontFamily: "mon-s",
+        fontFamily: "mon-sb",
         color: Colors.gray,
     },
     bntOutline: {

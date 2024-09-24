@@ -1,44 +1,90 @@
-import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    Text,
+    Image,
+    ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { defaulStyles } from "../constants/Styles";
 import { Colors } from "../constants/Colors";
 import { useAuth } from "../app/context/contextLogin";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const Profil = () => {
+    const router = useRouter();
     const { user, logout } = useAuth();
 
     return (
-        <SafeAreaView style={defaulStyles.container}>
-            <View style={styless.headerContainer}>
-                <Text style={styless.header}>Profil</Text>
-                <Ionicons name="notifications" size={26} />
-            </View>
+        <ScrollView
+            vertical
+            showsVerticalScrollIndicator={false}
+            inverted={true}
+        >
+            <SafeAreaView style={defaulStyles.container}>
+                <View style={styless.headerContainer}>
+                    <Text style={styless.header}>Profil</Text>
+                    <Ionicons name="notifications" size={26} />
+                </View>
 
-            <View style={styless.card}>
-                <TouchableOpacity>
-                    <Image
-                        source={require("../assets/images/user.png")}
-                        style={styless.avatar}
-                    />
-                    <View
-                        style={{
-                            flexDirection: "column",
-                            gap: 6,
-                            marginTop: 12,
-                        }}
-                    >
-                        <Text style={{ fontSize: 20 }}>{user.email}</Text>
-                    </View>
-                    <View>
-                        <Text style={{ fontSize: 16 }}>{user.password}</Text>
-                    </View>
+                <View style={styless.card}>
+                    <TouchableOpacity>
+                        <Image
+                            source={require("../assets/images/user.png")}
+                            style={styless.avatar}
+                        />
+                        <View
+                            style={{
+                                flexDirection: "column",
+                                gap: 6,
+                                marginTop: 12,
+                            }}
+                        >
+                            <Text style={{ fontSize: 20 }}>{user.email}</Text>
+                        </View>
+                        <View>
+                            <Text style={{ fontSize: 16 }}>
+                                {user.password}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styless.logoutButton} onPress={logout}>
+                    <Text style={styless.logoutText}>Logout</Text>
                 </TouchableOpacity>
-            </View>
-            <TouchableOpacity style={styless.logoutButton} onPress={logout}>
-                <Text style={styless.logoutText}>Logout</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+
+                {/* becomHost */}
+                <View style={styless.card}>
+                    <TouchableOpacity
+                        onPress={() => router.push("/(modals)/becomehost")}
+                    >
+                        <Image
+                            source={require("../assets/images/maison.png")}
+                            style={{
+                                width: 200,
+                                height: 150,
+                                borderRadius: 5,
+                            }}
+                        />
+
+                        <View
+                            style={{
+                                flexDirection: "column",
+                                gap: 6,
+                                marginTop: 12,
+                            }}
+                        >
+                            <Text style={{ fontSize: 15, fontFamily: "mon-b" }}>
+                                Devenez Hote de votre propriété en toute
+                                sécurité avec SODEICO IMMO
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+        </ScrollView>
     );
 };
 
