@@ -1,943 +1,710 @@
 // // import {
-// //     StyleSheet,
-// //     Text,
 // //     View,
-// //     TouchableOpacity,
+// //     Text,
 // //     TextInput,
+// //     Button,
 // //     ScrollView,
+// //     StyleSheet,
+// //     TouchableOpacity,
 // //     Image,
+// //     Alert,
 // // } from "react-native";
-// // import React, { useState, useEffect } from "react";
-// // import { BlurView } from "expo-blur";
-// // import Animated, {
-// //     FadeIn,
-// //     FadeOut,
-// //     SlideInDown,
-// // } from "react-native-reanimated";
-// // import { defaulStyles } from "../../constants/Styles";
-// // import { useNavigation } from "@react-navigation/native";
+// // import React, { useState } from "react";
+// // import { Colors } from "@/constants/Colors";
 // // import { Ionicons } from "@expo/vector-icons";
-// // import { Colors } from "../../constants/Colors";
-// // import { places } from "../../assets/data/places";
-// // import DateTimePicker from "@react-native-community/datetimepicker";
+// // import * as ImagePicker from "expo-image-picker"; // Importation du module ImagePicker
+// // import Animated from "react-native-reanimated";
+// // import RNPickerSelect from "react-native-picker-select"; // Importation de react-native-picker-select
 
-// // const AnimatedTouchableOpacity =
-// //     Animated.createAnimatedComponent(TouchableOpacity);
+// // const BecomeHost = () => {
+// //     const [step, setStep] = useState(1);
+// //     const [propertyType, setPropertyType] = useState("");
+// //     const [location, setLocation] = useState({
+// //         country: "",
+// //         street: "",
+// //         propertyNumber: "",
+// //         city: "",
+// //         state: "",
+// //         postalCode: "",
+// //     });
+// //     const [size, setSize] = useState({
+// //         area: "",
+// //         guests: 4,
+// //         bedrooms: 4,
+// //         beds: 4,
+// //         bathrooms: 2,
+// //     });
+// //     const [amenities, setAmenities] = useState({
+// //         wifi: false,
+// //         internet: false,
+// //         tv: false,
+// //         airConditioning: false,
+// //         fan: false,
+// //         privateEntrance: false,
+// //         dryer: false,
+// //         washingMachine: false,
+// //         heating: false,
+// //     });
+// //     const [groups, setGroups] = useState([
+// //         { name: "Invités", text: "", count: 0 },
+// //         { name: "Chambre à coucher", text: "", count: 0 },
+// //         { name: "Lits", text: "", count: 0 },
+// //         { name: "Salle de bain", text: "", count: 0 },
+// //         { name: "Cuisine", text: "", count: 0 },
+// //     ]);
+// //     const [description, setDescription] = useState("");
+// //     const [price, setPrice] = useState({
+// //         currency: "USD", // Devise par défaut
+// //         weekdayPrice: "",
+// //         weekendPrice: "",
+// //         monthlyDiscount: "",
+// //         minNights: "1",
+// //         maxNights: "99",
+// //     });
 
-// // const guestsGroups = [
-// //     {
-// //         name: "Adults",
-// //         text: "Age 13 or above",
-// //         count: 0,
-// //     },
-// //     {
-// //         name: "Children",
-// //         text: "Ages 2 - 12",
-// //         count: 0,
-// //     },
-// //     {
-// //         name: "Infants",
-// //         text: "Under 2",
-// //         count: 0,
-// //     },
-// //     {
-// //         name: "Pets",
-// //         text: "Pets allowed",
-// //         count: 0,
-// //     },
-// // ];
+// //     // Nouveaux états pour gérer les images
+// //     const [coverImage, setCoverImage] = useState(null);
+// //     const [propertyImages, setPropertyImages] = useState([]);
 
-// // const Page = () => {
-// //     const navigation = useNavigation();
-// //     const [openCard, setOpenCard] = useState(2);
-// //     const [selectedPlace, setSelectedPlace] = useState(null);
-// //     const [arrivalDate, setArrivalDate] = useState(null);
-// //     const [endDate, setEndDate] = useState(null);
-// //     const [showArrivalDatePicker, setShowArrivalDatePicker] = useState(false);
-// //     const [showEndDatePicker, setShowEndDatePicker] = useState(false);
-// //     const [groups, setGroups] = useState(guestsGroups);
-// //     const [searchQuery, setSearchQuery] = useState("");
-// //     const [filteredPlaces, setFilteredPlaces] = useState(places);
-// //     const [locationQuery, setLocationQuery] = useState("");
+// //     const stepsTotal = 10;
 
-// //     useEffect(() => {
-// //         let filtered = places;
-
-// //         if (searchQuery !== "") {
-// //             filtered = filtered.filter((place) =>
-// //                 place.title.toLowerCase().includes(searchQuery.toLowerCase())
-// //             );
+// //     const isStepValid = () => {
+// //         switch (step) {
+// //             case 1:
+// //                 return propertyType.length > 0;
+// //             case 2:
+// //                 return groups.some((group) => group.count > 0);
+// //             case 3:
+// //                 return size.area.length > 0 && size.guests > 0;
+// //             case 4:
+// //                 return coverImage !== null; // Vérifie si une image de couverture a été sélectionnée
+// //             case 5:
+// //                 return description.length > 0;
+// //             case 6:
+// //                 return (
+// //                     price.weekdayPrice.length > 0 &&
+// //                     price.weekendPrice.length > 0
+// //                 );
+// //             default:
+// //                 return true;
 // //         }
-
-// //         if (locationQuery !== "") {
-// //             filtered = filtered.filter((place) =>
-// //                 place.location
-// //                     .toLowerCase()
-// //                     .includes(locationQuery.toLowerCase())
-// //             );
-// //         }
-
-// //         setFilteredPlaces(filtered);
-// //     }, [searchQuery, locationQuery]);
-
-// //     const onClearAll = () => {
-// //         setOpenCard(0);
-// //         setSelectedPlace(null);
-// //         setArrivalDate(null);
-// //         setEndDate(null);
-// //         setShowArrivalDatePicker(false);
-// //         setShowEndDatePicker(false);
-// //         setGroups(guestsGroups.map((group) => ({ ...group, count: 0 })));
-// //         setSearchQuery("");
-// //         setLocationQuery("");
 // //     };
 
-// //     const handlePlaceSelect = (index) => {
-// //         setSelectedPlace(index);
-// //         setOpenCard(1); // Ouvre automatiquement la section "Quand" après avoir sélectionné une destination
+// //     const handleNextStep = () => {
+// //         if (isStepValid() && step < stepsTotal) {
+// //             setStep(step + 1);
+// //         }
 // //     };
 
-// //     const handleDateChange = (event, selectedDate) => {
-// //         if (event.type === "set") {
-// //             const currentDate = selectedDate || new Date();
-// //             if (showArrivalDatePicker) {
-// //                 setArrivalDate(currentDate);
-// //                 setShowArrivalDatePicker(false);
-// //             } else if (showEndDatePicker) {
-// //                 setEndDate(currentDate);
-// //                 setShowEndDatePicker(false);
-// //             }
+// //     // Fonction pour sélectionner l'image de couverture
+// //     const pickCoverImage = async () => {
+// //         let result = await ImagePicker.launchImageLibraryAsync({
+// //             mediaTypes: ImagePicker.MediaTypeOptions.Images,
+// //             allowsEditing: true,
+// //             aspect: [4, 3],
+// //             quality: 1,
+// //         });
+
+// //         if (!result.canceled) {
+// //             setCoverImage(result.assets[0].uri);
 // //         } else {
-// //             setShowArrivalDatePicker(false);
-// //             setShowEndDatePicker(false);
+// //             Alert.alert("Aucune image sélectionnée !");
 // //         }
 // //     };
 
-// //     const handleNextClick = () => {
-// //         if (openCard === 1 && arrivalDate && endDate) {
-// //             setOpenCard(2); // Passe à la section "Qui" après la sélection des dates
+// //     // Fonction pour ajouter des images de la propriété
+// //     const pickPropertyImages = async () => {
+// //         let result = await ImagePicker.launchImageLibraryAsync({
+// //             mediaTypes: ImagePicker.MediaTypeOptions.Images,
+// //             allowsMultipleSelection: true,
+// //             quality: 1,
+// //         });
+
+// //         if (!result.canceled) {
+// //             const newImages = result.assets.map((asset) => asset.uri);
+// //             setPropertyImages([...propertyImages, ...newImages]);
+// //         } else {
+// //             Alert.alert("Aucune image sélectionnée !");
 // //         }
 // //     };
 
 // //     return (
-// //         <BlurView intensity={-2} style={styles.container} tint="#fff">
-// //             {/* Where */}
-// //             <View style={styles.card}>
-// //                 {openCard !== 0 && (
-// //                     <AnimatedTouchableOpacity
-// //                         onPress={() => setOpenCard(0)}
-// //                         style={styles.cardPreviex}
-// //                         entering={FadeIn.duration(200)}
-// //                         exiting={FadeOut.duration(200)}
-// //                     >
-// //                         <Text style={styles.previewText}>Où</Text>
-// //                         <Text style={styles.previewDate}>
-// //                             {selectedPlace !== null
-// //                                 ? places[selectedPlace].title
-// //                                 : "Je suis flexible."}
-// //                         </Text>
-// //                     </AnimatedTouchableOpacity>
-// //                 )}
+// //         <ScrollView contentContainerStyle={styles.container}>
+// //             <Text style={styles.title}>
+// //                 Devenir Hôte - Étape {step}/{stepsTotal}
+// //             </Text>
 
-// //                 {openCard === 0 && (
-// //                     <>
-// //                         <Animated.Text
-// //                             entering={FadeIn}
-// //                             style={styles.cardHeader}
+// //             {step === 1 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Choix des catégories d'annonces</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Type de propriété (Chambre, Villa, Voiture, Appartement)"
+// //                         value={propertyType}
+// //                         onChangeText={setPropertyType}
+// //                     />
+// //                 </View>
+// //             )}
+
+// //             {step === 2 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Taille de votre emplacement</Text>
+// //                     <Animated.View></Animated.View>
+
+// //                     {groups.map((item, index) => (
+// //                         <View
+// //                             key={index}
+// //                             style={[styles.guestsItem, styles.itemborder]}
 // //                         >
-// //                             Where to
-// //                         </Animated.Text>
-// //                         <Animated.View style={styles.cardBody}>
-// //                             <View style={styles.searchSection}>
-// //                                 <Ionicons
-// //                                     style={styles.searchIcon}
-// //                                     name="search-outline"
-// //                                     size={20}
-// //                                 />
-// //                                 <TextInput
-// //                                     style={styles.inputField}
-// //                                     placeholder="Rechercher une destination"
-// //                                     placeholderTextColor={Colors.gray}
-// //                                     value={searchQuery}
-// //                                     onChangeText={setSearchQuery}
-// //                                 />
-// //                             </View>
-// //                             <View style={styles.searchSection}>
-// //                                 <Ionicons
-// //                                     style={styles.searchIcon}
-// //                                     name="location-outline"
-// //                                     size={20}
-// //                                 />
-// //                                 <TextInput
-// //                                     style={styles.inputField}
-// //                                     placeholder="Rechercher par localisation"
-// //                                     placeholderTextColor={Colors.gray}
-// //                                     value={locationQuery}
-// //                                     onChangeText={setLocationQuery}
-// //                                 />
-// //                             </View>
-// //                         </Animated.View>
-// //                         <ScrollView
-// //                             horizontal
-// //                             showsHorizontalScrollIndicator={false}
-// //                             contentContainerStyle={{
-// //                                 gap: 25,
-// //                                 paddingLeft: 20,
-// //                                 paddingBottom: 30,
-// //                             }}
-// //                         >
-// //                             {filteredPlaces.map((item, index) => (
-// //                                 <TouchableOpacity
-// //                                     key={index}
-// //                                     onPress={() => handlePlaceSelect(index)}
+// //                             <View>
+// //                                 <Text
+// //                                     style={{
+// //                                         fontFamily: "mon-b",
+// //                                         fontSize: 16,
+// //                                     }}
 // //                                 >
-// //                                     <Image
-// //                                         source={{ uri: item.image }}
-// //                                         style={
-// //                                             selectedPlace === index
-// //                                                 ? styles.placeSelected
-// //                                                 : styles.place
+// //                                     {item.name}
+// //                                 </Text>
+// //                                 <Text
+// //                                     style={{
+// //                                         fontFamily: "mon",
+// //                                         fontSize: 12,
+// //                                         color: Colors.gray,
+// //                                     }}
+// //                                 >
+// //                                     {item.text}
+// //                                 </Text>
+// //                             </View>
+// //                             <View
+// //                                 style={{
+// //                                     flexDirection: "row",
+// //                                     alignItems: "center",
+// //                                     gap: 10,
+// //                                 }}
+// //                             >
+// //                                 <TouchableOpacity
+// //                                     onPress={() => {
+// //                                         const newGroups = [...groups];
+// //                                         newGroups[index].count =
+// //                                             newGroups[index].count > 0
+// //                                                 ? newGroups[index].count - 1
+// //                                                 : 0;
+// //                                         setGroups(newGroups);
+// //                                     }}
+// //                                 >
+// //                                     <Ionicons
+// //                                         name="remove-circle-outline"
+// //                                         size={26}
+// //                                         color={
+// //                                             groups[index].count > 0
+// //                                                 ? Colors.gray
+// //                                                 : "#cdcdcd"
 // //                                         }
 // //                                     />
-// //                                     <Text
-// //                                         style={[
-// //                                             {
-// //                                                 fontFamily: "mon-s",
-// //                                                 paddingTop: 6,
-// //                                             },
-// //                                             selectedPlace === index
-// //                                                 ? { fontFamily: "mon-sb" }
-// //                                                 : { fontFamily: "mon" },
-// //                                         ]}
-// //                                     >
-// //                                         {item.title}
-// //                                     </Text>
 // //                                 </TouchableOpacity>
-// //                             ))}
-// //                         </ScrollView>
-// //                     </>
-// //                 )}
-// //             </View>
-// //             {/* When */}
-// //             <View style={styles.card}>
-// //                 {openCard !== 1 && (
-// //                     <AnimatedTouchableOpacity
-// //                         onPress={() => {
-// //                             setOpenCard(1);
-// //                             setShowArrivalDatePicker(false);
-// //                             setShowEndDatePicker(false);
-// //                         }}
-// //                         style={styles.cardPreviex}
-// //                         entering={FadeIn.duration(200)}
-// //                         exiting={FadeOut.duration(200)}
-// //                     >
-// //                         <Text style={styles.previewText}>Quand</Text>
-// //                         <Text style={styles.previewDate}>
-// //                             {arrivalDate && endDate
-// //                                 ? `${arrivalDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-// //                                 : "Chaque semaine."}
-// //                         </Text>
-// //                     </AnimatedTouchableOpacity>
-// //                 )}
-
-// //                 {openCard === 1 && (
-// //                     <>
-// //                         <Animated.Text
-// //                             entering={FadeIn}
-// //                             style={styles.cardHeader}
-// //                         >
-// //                             Quand voulez-vous voyager ?
-// //                         </Animated.Text>
-// //                         <Animated.View style={styles.cardBody}>
-// //                             <TouchableOpacity
-// //                                 onPress={() => setShowArrivalDatePicker(true)}
-// //                                 style={styles.dateButton}
-// //                             >
-// //                                 <Text style={styles.dateButtonText}>
-// //                                     {arrivalDate
-// //                                         ? `Date d'arrivée: ${arrivalDate.toLocaleDateString()}`
-// //                                         : "Sélectionner la date d'arrivée"}
+// //                                 <Text
+// //                                     style={{
+// //                                         fontFamily: "mon",
+// //                                         fontSize: 16,
+// //                                         textAlign: "center",
+// //                                         minWidth: 18,
+// //                                     }}
+// //                                 >
+// //                                     {item.count}
 // //                                 </Text>
-// //                             </TouchableOpacity>
-// //                             {showArrivalDatePicker && (
-// //                                 <DateTimePicker
-// //                                     mode="date"
-// //                                     display="spinner"
-// //                                     value={arrivalDate || new Date()}
-// //                                     onChange={handleDateChange}
-// //                                 />
-// //                             )}
-
-// //                             <TouchableOpacity
-// //                                 onPress={() => setShowEndDatePicker(true)}
-// //                                 style={styles.dateButton}
-// //                             >
-// //                                 <Text style={styles.dateButtonText}>
-// //                                     {endDate
-// //                                         ? `Date de fin: ${endDate.toLocaleDateString()}`
-// //                                         : "Sélectionner la date de fin"}
-// //                                 </Text>
-// //                             </TouchableOpacity>
-// //                             {showEndDatePicker && (
-// //                                 <DateTimePicker
-// //                                     mode="date"
-// //                                     display="spinner"
-// //                                     value={endDate || new Date()}
-// //                                     onChange={handleDateChange}
-// //                                 />
-// //                             )}
-
-// //                             {arrivalDate && endDate && (
 // //                                 <TouchableOpacity
-// //                                     onPress={handleNextClick}
-// //                                     style={styles.nextButton}
+// //                                     onPress={() => {
+// //                                         const newGroups = [...groups];
+// //                                         newGroups[index].count++;
+// //                                         setGroups(newGroups);
+// //                                     }}
 // //                                 >
-// //                                     <Text style={styles.nextButtonText}>
-// //                                         Suivant
-// //                                     </Text>
+// //                                     <Ionicons
+// //                                         name="add-circle-outline"
+// //                                         size={26}
+// //                                         color={Colors.gray}
+// //                                     />
 // //                                 </TouchableOpacity>
-// //                             )}
-// //                         </Animated.View>
-// //                     </>
-// //                 )}
-// //             </View>
-// //             {/* Who */}
-// //             <View style={styles.card}>
-// //                 {openCard !== 2 && (
-// //                     <AnimatedTouchableOpacity
-// //                         onPress={() => setOpenCard(2)}
-// //                         style={styles.cardPreviex}
-// //                         entering={FadeIn.duration(200)}
-// //                         exiting={FadeOut.duration(200)}
-// //                     >
-// //                         <Text style={styles.previewText}>Qui</Text>
-// //                         <Text style={styles.previewDate}>
-// //                             {groups[0].count > 0
-// //                                 ? `${groups[0].count} ${groups[0].name}`
-// //                                 : "Ajouter des invités."}
-// //                         </Text>
-// //                     </AnimatedTouchableOpacity>
-// //                 )}
+// //                             </View>
+// //                         </View>
+// //                     ))}
+// //                 </View>
+// //             )}
 
-// //                 {openCard === 2 && (
-// //                     <>
-// //                         <Animated.Text
-// //                             entering={FadeIn}
-// //                             style={styles.cardHeader}
-// //                         >
-// //                             Combien d'invités ?
-// //                         </Animated.Text>
-// //                         <Animated.View style={styles.cardBody}>
-// //                             {groups.map((group, index) => (
-// //                                 <View
-// //                                     key={index}
-// //                                     style={styles.guestsGroupContainer}
-// //                                 >
-// //                                     <View style={styles.guestsGroupText}>
-// //                                         <Text
-// //                                             style={{
-// //                                                 fontFamily: "mon-sb",
-// //                                                 fontSize: 15,
-// //                                             }}
-// //                                         >
-// //                                             {group.name}
-// //                                         </Text>
-// //                                         <Text
-// //                                             style={{
-// //                                                 fontFamily: "mon",
-// //                                                 fontSize: 13,
-// //                                             }}
-// //                                         >
-// //                                             {group.text}
-// //                                         </Text>
-// //                                     </View>
-// //                                     <View style={styles.guestsGroupControl}>
-// //                                         <TouchableOpacity
-// //                                             onPress={() => {
-// //                                                 const newGroups = [...groups];
-// //                                                 newGroups[index].count =
-// //                                                     newGroups[index].count > 0
-// //                                                         ? newGroups[index]
-// //                                                               .count - 1
-// //                                                         : 0;
-// //                                                 setGroups(newGroups);
-// //                                             }}
-// //                                             style={[
-// //                                                 styles.controlButton,
-// //                                                 {
-// //                                                     borderColor:
-// //                                                         group.count > 0
-// //                                                             ? Colors.black
-// //                                                             : Colors.gray,
-// //                                                 },
-// //                                             ]}
-// //                                         >
-// //                                             <Text
-// //                                                 style={{
-// //                                                     color:
-// //                                                         group.count > 0
-// //                                                             ? Colors.black
-// //                                                             : Colors.gray,
-// //                                                     fontSize: 20,
-// //                                                 }}
-// //                                             >
-// //                                                 -
-// //                                             </Text>
-// //                                         </TouchableOpacity>
-// //                                         <Text
-// //                                             style={{
-// //                                                 fontFamily: "mon-sb",
-// //                                                 fontSize: 16,
-// //                                             }}
-// //                                         >
-// //                                             {group.count}
-// //                                         </Text>
-// //                                         <TouchableOpacity
-// //                                             onPress={() => {
-// //                                                 const newGroups = [...groups];
-// //                                                 newGroups[index].count += 1;
-// //                                                 setGroups(newGroups);
-// //                                             }}
-// //                                             style={styles.controlButton}
-// //                                         >
-// //                                             <Text
-// //                                                 style={{
-// //                                                     color: Colors.black,
-// //                                                     fontSize: 20,
-// //                                                 }}
-// //                                             >
-// //                                                 +
-// //                                             </Text>
-// //                                         </TouchableOpacity>
-// //                                     </View>
-// //                                 </View>
-// //                             ))}
-// //                         </Animated.View>
-// //                     </>
-// //                 )}
-// //             </View>
-// //             <AnimatedTouchableOpacity
-// //                 onPress={onClearAll}
-// //                 style={styles.clearButton}
-// //                 entering={SlideInDown}
+// //             {step === 3 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Taille de votre emplacement</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Superficie (m²)"
+// //                         value={size.area}
+// //                         onChangeText={(text) =>
+// //                             setSize({ ...size, area: text })
+// //                         }
+// //                     />
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Invités"
+// //                         value={String(size.guests)}
+// //                         onChangeText={(text) =>
+// //                             setSize({ ...size, guests: parseInt(text) || 0 })
+// //                         }
+// //                     />
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Chambre à coucher"
+// //                         value={String(size.bedrooms)}
+// //                         onChangeText={(text) =>
+// //                             setSize({ ...size, bedrooms: parseInt(text) || 0 })
+// //                         }
+// //                     />
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Lits"
+// //                         value={String(size.beds)}
+// //                         onChangeText={(text) =>
+// //                             setSize({ ...size, beds: parseInt(text) || 0 })
+// //                         }
+// //                     />
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Salle de bain"
+// //                         value={String(size.bathrooms)}
+// //                         onChangeText={(text) =>
+// //                             setSize({ ...size, bathrooms: parseInt(text) || 0 })
+// //                         }
+// //                     />
+// //                 </View>
+// //             )}
+
+// //             {/* Étape pour ajouter des photos */}
+// //             {step === 4 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Ajouter des Photos de votre Propriété</Text>
+// //                     <Text style={styles.photoInstructions}>
+// //                         Quelques belles photos aideront les clients à avoir plus
+// //                         de sympathie pour votre propriété.
+// //                     </Text>
+
+// //                     <Text style={styles.photoLabel}>Image de couverture</Text>
+// //                     <TouchableOpacity
+// //                         style={styles.uploadButton}
+// //                         onPress={pickCoverImage}
+// //                     >
+// //                         <Text style={styles.uploadButtonText}>
+// //                             Télécharger une image
+// //                         </Text>
+// //                     </TouchableOpacity>
+// //                     {coverImage && (
+// //                         <Image
+// //                             source={{ uri: coverImage }}
+// //                             style={styles.imagePreview}
+// //                         />
+// //                     )}
+
+// //                     <Text style={styles.photoLabel}>Photos du lieu</Text>
+// //                     <TouchableOpacity
+// //                         style={styles.uploadButton}
+// //                         onPress={pickPropertyImages}
+// //                     >
+// //                         <Text style={styles.uploadButtonText}>
+// //                             Télécharger des images
+// //                         </Text>
+// //                     </TouchableOpacity>
+// //                     <View style={styles.imageGallery}>
+// //                         {propertyImages.map((image, index) => (
+// //                             <Image
+// //                                 key={index}
+// //                                 source={{ uri: image }}
+// //                                 style={styles.imagePreview}
+// //                             />
+// //                         ))}
+// //                     </View>
+// //                 </View>
+// //             )}
+
+// //             {/* Étape pour la description */}
+// //             {step === 5 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Décrivez votre propriété</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         multiline
+// //                         numberOfLines={4}
+// //                         placeholder="Entrez une description"
+// //                         value={description}
+// //                         onChangeText={setDescription}
+// //                     />
+// //                 </View>
+// //             )}
+
+// //             {/* Étape pour établir le prix */}
+// //             {step === 6 && (
+// //                 <View style={styles.stepContainer}>
+// //                     <Text>Établissez le prix de votre espace</Text>
+// //                     <Text style={styles.photoInstructions}>
+// //                         Les revenus de l'hôte dépendent directement de la
+// //                         fixation des tarifs et des réglementations sur le nombre
+// //                         de clients, le nombre de nuitées et la politique
+// //                         d'annulation.
+// //                     </Text>
+// //                     {/* Sélecteur de devise */}
+// //                     <Text>Devise</Text>
+// //                     <RNPickerSelect
+// //                         onValueChange={(value) =>
+// //                             setPrice({ ...price, currency: value })
+// //                         }
+// //                         items={[
+// //                             { label: "USD", value: "USD" },
+// //                             { label: "CDF", value: "CDF" },
+// //                         ]}
+// //                     />
+// //                     <Text>Prix de base (Lundi - Jeudi)</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Prix de base"
+// //                         value={price.weekdayPrice}
+// //                         keyboardType="numeric"
+// //                         onChangeText={(text) =>
+// //                             setPrice({ ...price, weekdayPrice: text })
+// //                         }
+// //                     />
+// //                     <Text>Prix de base (Vendredi - Dimanche)</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Prix de base"
+// //                         value={price.weekendPrice}
+// //                         keyboardType="numeric"
+// //                         onChangeText={(text) =>
+// //                             setPrice({ ...price, weekendPrice: text })
+// //                         }
+// //                     />
+// //                     <Text>Prix à long terme (Remise mensuelle)</Text>
+// //                     <TextInput
+// //                         style={styles.input}
+// //                         placeholder="Remise mensuelle (%)"
+// //                         value={price.monthlyDiscount}
+// //                         keyboardType="numeric"
+// //                         onChangeText={(text) =>
+// //                             setPrice({ ...price, monthlyDiscount: text })
+// //                         }
+// //                     />
+// //                 </View>
+// //             )}
+
+// //             <TouchableOpacity
+// //                 style={styles.uploadButton}
+// //                 onPress={handleNextStep}
 // //             >
-// //                 <Text style={styles.clearButtonText}>Tout effacer</Text>
-// //             </AnimatedTouchableOpacity>
-// //         </BlurView>
+// //                 <Text style={styles.uploadButtonText}>
+// //                     {step < stepsTotal ? "Suivant" : "Terminer"}
+// //                 </Text>
+// //             </TouchableOpacity>
+// //         </ScrollView>
 // //     );
 // // };
 
-// // export default Page;
-
 // // const styles = StyleSheet.create({
 // //     container: {
-// //         ...defaulStyles.container,
-// //         justifyContent: "center",
-// //     },
-// //     card: {
-// //         width: "90%",
-// //         alignSelf: "center",
-// //         backgroundColor: "#fff",
-// //         marginVertical: 10,
-// //         borderRadius: 15,
-// //         overflow: "hidden",
-// //     },
-// //     cardPreviex: {
-// //         paddingHorizontal: 25,
-// //         paddingVertical: 20,
-// //     },
-// //     previewText: {
-// //         fontFamily: "mon-sb",
-// //         fontSize: 15,
-// //     },
-// //     previewDate: {
-// //         fontFamily: "mon",
-// //         fontSize: 13,
-// //         paddingTop: 5,
-// //     },
-// //     cardHeader: {
-// //         fontFamily: "mon-b",
-// //         fontSize: 18,
-// //         paddingHorizontal: 25,
-// //         paddingTop: 20,
-// //     },
-// //     cardBody: {
+// //         flexGrow: 1,
 // //         padding: 20,
 // //     },
-// //     place: {
-// //         height: 100,
-// //         width: 100,
-// //         resizeMode: "cover",
-// //         borderRadius: 15,
-// //         backgroundColor: Colors.lightGray,
+// //     title: {
+// //         fontSize: 24,
+// //         fontWeight: "bold",
+// //         marginBottom: 20,
 // //     },
-// //     placeSelected: {
-// //         height: 100,
-// //         width: 100,
-// //         resizeMode: "cover",
-// //         borderRadius: 15,
-// //         borderWidth: 2,
-// //         borderColor: Colors.black,
+// //     stepContainer: {
+// //         marginBottom: 20,
 // //     },
-// //     dateButton: {
-// //         paddingVertical: 15,
-// //         backgroundColor: Colors.lightGray,
-// //         borderRadius: 10,
-// //         paddingHorizontal: 15,
+// //     input: {
+// //         borderWidth: 1,
+// //         borderColor: Colors.lightGray,
+// //         borderRadius: 8,
+// //         padding: 10,
+// //         marginBottom: 15,
+// //     },
+// //     uploadButton: {
+// //         backgroundColor: Colors.primary,
+// //         padding: 10,
+// //         borderRadius: 5,
 // //         marginVertical: 10,
 // //     },
-// //     dateButtonText: {
-// //         fontFamily: "mon",
-// //         fontSize: 15,
-// //     },
-// //     nextButton: {
-// //         paddingVertical: 15,
-// //         backgroundColor: Colors.black,
-// //         borderRadius: 10,
-// //         paddingHorizontal: 15,
-// //         marginVertical: 10,
-// //     },
-// //     nextButtonText: {
-// //         fontFamily: "mon",
-// //         fontSize: 15,
+// //     uploadButtonText: {
 // //         color: "#fff",
 // //         textAlign: "center",
 // //     },
-// //     guestsGroupContainer: {
+// //     photoLabel: {
+// //         fontWeight: "bold",
+// //         marginTop: 10,
+// //     },
+// //     imagePreview: {
+// //         width: 100,
+// //         height: 100,
+// //         margin: 5,
+// //         borderRadius: 5,
+// //     },
+// //     imageGallery: {
+// //         flexDirection: "row",
+// //         flexWrap: "wrap",
+// //     },
+// //     photoInstructions: {
+// //         color: Colors.gray,
+// //         marginVertical: 5,
+// //     },
+// //     guestsItem: {
 // //         flexDirection: "row",
 // //         justifyContent: "space-between",
-// //         alignItems: "center",
-// //         marginVertical: 15,
-// //     },
-// //     guestsGroupText: {
-// //         flexDirection: "column",
-// //     },
-// //     guestsGroupControl: {
-// //         flexDirection: "row",
-// //         alignItems: "center",
-// //         gap: 20,
-// //     },
-// //     controlButton: {
-// //         borderRadius: 15,
+// //         padding: 10,
+// //         marginVertical: 5,
 // //         borderWidth: 1,
-// //         paddingVertical: 2,
-// //         paddingHorizontal: 8,
-// //         justifyContent: "center",
-// //         alignItems: "center",
+// //         borderColor: Colors.lightGray,
+// //         borderRadius: 8,
 // //     },
-// //     searchSection: {
-// //         flexDirection: "row",
-// //         alignItems: "center",
-// //         backgroundColor: Colors.lightGray,
-// //         borderRadius: 10,
-// //         paddingHorizontal: 15,
-// //         paddingVertical: 10,
-// //         marginBottom: 10,
-// //     },
-// //     searchIcon: {
-// //         color: Colors.gray,
-// //     },
-// //     inputField: {
-// //         fontFamily: "mon",
-// //         fontSize: 16,
-// //         color: Colors.black,
-// //         flex: 1,
-// //         marginLeft: 10,
-// //     },
-// //     clearButton: {
-// //         alignSelf: "center",
-// //         marginTop: 20,
-// //     },
-// //     clearButtonText: {
-// //         color: Colors.red,
-// //         fontFamily: "mon-sb",
+// //     itemborder: {
+// //         borderRadius: 8,
+// //         borderWidth: 1,
+// //         borderColor: Colors.lightGray,
 // //     },
 // // });
 
-// import React, { useState, useMemo, useRef } from "react";
-// import {
-//     View,
-//     Text,
-//     TouchableOpacity,
-//     Image,
-//     StyleSheet,
-//     ScrollView,
-//     Animated,
-// } from "react-native";
-// import { defaulStyles } from "../../constants/Styles";
-// import { Colors } from "@/constants/Colors";
-// import Ionicons from "@expo/vector-icons/Ionicons";
-// import BottomSheet from "@gorhom/bottom-sheet";
-// import { GestureHandlerRootView } from "react-native-gesture-handler";
-// import listingsData from "@/assets/data/listings.json";
-// import { useLocalSearchParams } from "expo-router";
-// import CreditCardInput from "../../components/CreditCardInput";
-// import MobileMoney from "../../components/MobileMoney";
+// // export default BecomeHost;
+// import { View, Text, ScrollView, StyleSheet } from "react-native";
+// import React, { useState } from "react";
+// import { Ionicons } from "@expo/vector-icons";
+// // import * as ImagePicker from "expo-image-picker"; // Importation du module ImagePicker
+// import RNPickerSelect from "react-native-picker-select"; // Importation de react-native-picker-select
 
-// const Pay = () => {
-//     const bottomRef = useRef(null);
-//     const snapPoints = useMemo(() => ["35%"]);
-//     const [showBottomSheet, setShowBottomSheet] = useState(false);
-//     const [paymentMethod, setPaymentMethod] = useState(null);
-//     const [openCard, setOpenCard] = useState(0); // 0 = pas ouvert, 2 = section de modification des voyageurs
-//     const [groups, setGroups] = useState([
-//         { name: "Adultes", text: "13 ans ou plus", count: 0 },
-//         { name: "Enfants", text: "Ages 2 - 12", count: 0 },
-//         { name: "Bébés", text: "Moins de 2 ans", count: 0 },
-//         {
-//             name: "Animaux de compagnie",
-//             text: "Animaux autorisés",
-//             count: 0,
-//         },
-//     ]);
+// const BecomeHost = () => {
+//     const [step, setStep] = useState(1);
+//     const [propertyType, setPropertyType] = useState([]);
 
-//     const { id } = useLocalSearchParams();
-//     const listing = listingsData.find((item) => item.id === id);
+//     const stepsTotal = 10;
 
-//     // Calcul des détails du prix avec vérification des valeurs
-//     const numberOfNights = Number(listing?.numberOfNights) || 0;
-//     const cleaningFee = Number(listing?.cleaningFee) || 0;
-//     const taxes = Number(listing?.taxes) || 0;
-//     const pricePerNight = Number(listing?.pricePerNight) || 0;
-
-//     const totalPrice = pricePerNight * numberOfNights;
-//     const grandTotal = totalPrice + cleaningFee + taxes;
-
-//     const handleBottomSheet = (method) => {
-//         if (showBottomSheet && paymentMethod === method) {
-//             setShowBottomSheet(false);
-//             setPaymentMethod(null);
-//         } else {
-//             setPaymentMethod(method);
-//             setShowBottomSheet(true);
+//     const isStepValid = () => {
+//         switch (step) {
+//             case 1:
+//                 return propertyType.length > 0;
+//             default:
+//                 return true;
 //         }
 //     };
 
-//     const handleOpenCard = () => {
-//         setOpenCard(openCard === 2 ? 0 : 2); // Alterner entre ouvert et fermé
+//     const handleNextStep = () => {
+//         if (isStepValid() && step < stepsTotal) {
+//             setStep(step + 1);
+//         }
 //     };
-//     const handleClose = () => {
-//         setOpenCard(0); // Fermer la section de modification des voyageurs
-//     };
+
+//     // Options pour le multi-sélecteur
+//     const propertyTypeOptions = [
+//         { label: "Appartement", value: "Appartement" },
+//         { label: "Chambre", value: "Chambre" },
+//         { label: "Villa", value: "Villa" },
+//         { label: "Voiture", value: "Voiture" },
+//         { label: "Maison", value: "Maison" },
+//     ];
 
 //     return (
-//         <GestureHandlerRootView style={{ flex: 1 }}>
-//             <ScrollView contentContainerStyle={styles.scrollViewContent}>
-//                 <View style={styles.container}>
-//                     <View style={styles.row}>
-//                         <Image
-//                             source={{ uri: listing.featuredImage }}
-//                             style={styles.avatarImage}
-//                         />
-//                         <View style={styles.infoContainer}>
-//                             <Text style={styles.title}>{listing.title}</Text>
-//                             <Text style={styles.subtitle}>
-//                                 {listing.titles}
-//                             </Text>
-//                             <View style={styles.ratingContainer}>
-//                                 <Text style={styles.ratingText}>
-//                                     {listing.rating}
-//                                 </Text>
-//                                 <Text style={styles.superHostText}>
-//                                     SuperHost
-//                                 </Text>
-//                             </View>
-//                         </View>
-//                     </View>
+//         <ScrollView contentContainerStyle={styles.container}>
+//             <Text style={styles.title}>
+//                 Devenir Hôte - Étape {step}/{stepsTotal}
+//             </Text>
 
-//                     {/* Voyageurs */}
-//                     <View style={styles.voyageContainer}>
-//                         <Text style={styles.sectionTitle}>Votre Voyage</Text>
-//                         <View>
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>Date</Text>
-//                                     <Text style={styles.detailValue}>
-//                                         12-17 sept
-//                                     </Text>
-//                                 </View>
-//                                 <Text style={styles.modifyText}>Modifier</Text>
-//                             </View>
-
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         Voyageurs
-//                                     </Text>
-//                                     <Text style={styles.detailValue}>
-//                                         {groups.reduce(
-//                                             (acc, group) => acc + group.count,
-//                                             0
-//                                         )}{" "}
-//                                         voyageurs
-//                                     </Text>
-//                                 </View>
-//                                 <TouchableOpacity onPress={handleOpenCard}>
-//                                     <Text style={styles.modifyText}>
-//                                         Modifier
-//                                     </Text>
-//                                 </TouchableOpacity>
-//                             </View>
-//                         </View>
-//                     </View>
-//                     {/* Condition d'annulation */}
-//                     <View style={styles.voyageContainer}>
-//                         <Text style={styles.sectionTitle}>
-//                             Condition d'annulation
-//                         </Text>
-//                         <View>
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         Non remboursable
-//                                     </Text>
-//                                     <Text style={styles.detailValue}>
-//                                         ({grandTotal.toFixed(2)}$)
-//                                     </Text>
-//                                 </View>
-//                                 <Text style={styles.modifyText}>Modifier</Text>
-//                             </View>
-
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         Cette réservation n'est pas remboursable
-//                                     </Text>
-//                                 </View>
-//                             </View>
-//                         </View>
-//                     </View>
-
-//                     {/* Details du prix */}
-//                     <View style={styles.voyageContainer}>
-//                         <Text style={styles.sectionTitle}>Détails du prix</Text>
-//                         <View>
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         {pricePerNight}$ x {numberOfNights}{" "}
-//                                         nuits
-//                                     </Text>
-//                                 </View>
-//                                 <Text style={styles.modifyText}>
-//                                     {totalPrice} $
-//                                 </Text>
-//                             </View>
-
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         Frais de ménage
-//                                     </Text>
-//                                 </View>
-//                                 <Text style={styles.modifyText}>
-//                                     {cleaningFee} $
-//                                 </Text>
-//                             </View>
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text style={styles.detailLabel}>
-//                                         Taxes
-//                                     </Text>
-//                                 </View>
-//                                 <Text style={styles.modifyText}>{taxes} $</Text>
-//                             </View>
-//                             {/* separatorView */}
-//                             <View
-//                                 style={{
-//                                     flex: 1,
-//                                     borderBottomColor: "#000",
-//                                     borderBottomWidth: StyleSheet.hairlineWidth,
-//                                 }}
+//             {step === 1 && (
+//                 <View style={styles.stepContainer}>
+//                     <Text style={styles.label}>
+//                         Choix des catégories d'annonces
+//                     </Text>
+//                     <RNPickerSelect
+//                         onValueChange={(value) =>
+//                             setPropertyType([...propertyType, value])
+//                         }
+//                         items={propertyTypeOptions}
+//                         value={propertyType}
+//                         useNativeAndroidPickerStyle={false}
+//                         placeholder={{
+//                             label: "Sélectionner votre catégorie",
+//                             value: null,
+//                         }}
+//                         style={{
+//                             inputIOS: styles.pickerSelectStyles,
+//                             inputAndroid: styles.pickerSelectStyles,
+//                             iconContainer: {
+//                                 top: 15,
+//                                 right: 15,
+//                             },
+//                         }}
+//                         Icon={() => (
+//                             <Ionicons
+//                                 name="arrow-down"
+//                                 size={24}
+//                                 color="gray"
 //                             />
-//                             {/* separatorView  fin*/}
-
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <Text
-//                                         style={
-//                                             ([styles.detailLabel],
-//                                             {
-//                                                 marginTop: 10,
-//                                                 fontWeight: "800",
-//                                             })
-//                                         }
-//                                     >
-//                                         Total(DOLLAR)
-//                                     </Text>
-//                                 </View>
-//                                 <Text
-//                                     style={[
-//                                         styles.modifyText,
-//                                         { marginTop: 10, fontWeight: "800" },
-//                                     ]}
-//                                 >
-//                                     {grandTotal.toFixed(2)} $
-//                                 </Text>
-//                             </View>
-//                         </View>
-//                     </View>
-
-//                     {/* Payez avec */}
-
-//                     <View style={styles.voyageContainer}>
-//                         <Text style={styles.sectionTitle}>Payez avec</Text>
-//                         <View>
-//                             <View style={styles.detailRow}>
-//                                 <View>
-//                                     <TouchableOpacity
-//                                         style={styles.payAvec}
-//                                         onPress={() =>
-//                                             handleBottomSheet("credit")
-//                                         }
-//                                     >
-//                                         <Ionicons
-//                                             name="card-outline"
-//                                             size={26}
-//                                             color="#9f9f9f"
-//                                         />
-//                                         <Text style={styles.detailLabel}>
-//                                             Carte de crédit ou de débit
-//                                         </Text>
-//                                     </TouchableOpacity>
-
-//                                     <TouchableOpacity
-//                                         style={styles.payAvec}
-//                                         onPress={() =>
-//                                             handleBottomSheet("mobile")
-//                                         }
-//                                     >
-//                                         <Ionicons
-//                                             name="cash-outline"
-//                                             size={26}
-//                                             color="#9f9f9f"
-//                                         />
-//                                         <Text style={styles.detailLabel}>
-//                                             Mobile money
-//                                         </Text>
-//                                     </TouchableOpacity>
-//                                 </View>
-//                             </View>
-//                         </View>
-//                     </View>
-
-//                     {/* Bouton confirmer le paiement */}
-
-//                     <View style={styles.containerPay}>
-//                         <View style={styles.textContainer}>
-//                             <Text style={styles.textPay}>
-//                                 Confirmer le paiement
-//                             </Text>
-//                         </View>
-//                     </View>
+//                         )}
+//                     />
 //                 </View>
-//             </ScrollView>
-
-//             <BottomSheet
-//                 ref={bottomRef}
-//                 snapPoints={snapPoints}
-//                 index={-1}
-//                 onChange={() => setShowBottomSheet(true)}
-//                 style={{
-//                     backgroundColor: Colors.secondaryColor,
-//                 }}
-//             >
-//                 <View>
-//                     {paymentMethod === "credit" && <CreditCardInput />}
-//                     {paymentMethod === "mobile" && <MobileMoney />}
-//                 </View>
-//             </BottomSheet>
-//         </GestureHandlerRootView>
+//             )}
+//         </ScrollView>
 //     );
 // };
 
 // const styles = StyleSheet.create({
-//     scrollViewContent: {
-//         flexGrow: 1,
-//     },
 //     container: {
+//         flexGrow: 1,
 //         padding: 20,
-//     },
-//     row: {
-//         flexDirection: "row",
-//         marginBottom: 20,
-//     },
-//     avatarImage: {
-//         width: 100,
-//         height: 100,
-//         borderRadius: 10,
-//     },
-//     infoContainer: {
-//         marginLeft: 10,
-//         flex: 1,
+//         backgroundColor: "#fff",
 //     },
 //     title: {
-//         fontSize: 18,
+//         fontSize: 24,
 //         fontWeight: "bold",
-//     },
-//     subtitle: {
-//         fontSize: 16,
-//         color: Colors.gray,
-//     },
-//     ratingContainer: {
-//         flexDirection: "row",
-//         alignItems: "center",
-//     },
-//     ratingText: {
-//         fontSize: 14,
-//         color: Colors.primaryColor,
-//     },
-//     superHostText: {
-//         fontSize: 14,
-//         color: Colors.secondaryColor,
-//         marginLeft: 5,
-//     },
-//     voyageContainer: {
 //         marginBottom: 20,
 //     },
-//     sectionTitle: {
-//         fontSize: 16,
-//         fontWeight: "bold",
-//         marginBottom: 10,
+//     stepContainer: {
+//         marginBottom: 20,
 //     },
-//     detailRow: {
-//         flexDirection: "row",
-//         justifyContent: "space-between",
-//         alignItems: "center",
-//         marginBottom: 10,
-//     },
-//     detailLabel: {
-//         fontSize: 14,
-//         color: Colors.gray,
-//     },
-//     detailValue: {
-//         fontSize: 14,
-//         fontWeight: "bold",
-//     },
-//     modifyText: {
-//         color: Colors.primaryColor,
-//         fontSize: 14,
-//     },
-//     payAvec: {
-//         flexDirection: "row",
-//         alignItems: "center",
-//         marginBottom: 10,
-//     },
-//     containerPay: {
-//         backgroundColor: Colors.primaryColor,
-//         padding: 20,
-//         borderRadius: 10,
-//         alignItems: "center",
-//     },
-//     textContainer: {
-//         backgroundColor: Colors.primaryColor,
-//         borderRadius: 10,
-//     },
-//     textPay: {
-//         color: "#fff",
+//     label: {
 //         fontSize: 18,
-//         fontWeight: "bold",
+//         marginBottom: 10,
+//     },
+//     pickerSelectStyles: {
+//         fontSize: 16,
+//         paddingVertical: 12,
+//         paddingHorizontal: 10,
+//         borderWidth: 1,
+//         borderColor: "black",
+//         borderRadius: 4,
+//         color: "black",
+//         paddingRight: 30, // to ensure the text is never behind the icon
 //     },
 // });
 
-// export default Pay;
+// export default BecomeHost;
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+} from "react-native";
+import React, { useState } from "react";
+import { Picker } from "@react-native-picker/picker"; // Assurez-vous d'avoir installé cette dépendance
+import { Colors } from "@/constants/Colors"; // Ajoutez vos couleurs personnalisées si nécessaire
+
+const LocationStep = () => {
+    const [location, setLocation] = useState({
+        country: "",
+        street: "",
+        propertyNumber: "",
+        city: "",
+        state: "",
+        postalCode: "",
+    });
+
+    const countries = ["Congo", "Brazza", "Gabon", "Tanzanie"]; // Les options de pays
+
+    const handleLocationChange = (key, value) => {
+        setLocation({ ...location, [key]: value });
+    };
+
+    return (
+        <View style={styles.stepContainer}>
+            {/* Sélectionner le pays */}
+            <Text style={styles.label}>Sélectionner le pays</Text>
+            <View style={styles.pickerContainer}>
+                <Picker
+                    selectedValue={location.country}
+                    onValueChange={(value) =>
+                        handleLocationChange("country", value)
+                    }
+                    style={styles.picker}
+                >
+                    <Picker.Item label="Choisir un pays" value="" />
+                    {countries.map((country) => (
+                        <Picker.Item
+                            label={country}
+                            value={country}
+                            key={country}
+                        />
+                    ))}
+                </Picker>
+            </View>
+
+            {/* Autres champs de saisie */}
+            <Text style={styles.label}>Rue</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Rue"
+                value={location.street}
+                onChangeText={(value) => handleLocationChange("street", value)}
+            />
+
+            <Text style={styles.label}>Numéro de propriété</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Numéro de propriété"
+                value={location.propertyNumber}
+                onChangeText={(value) =>
+                    handleLocationChange("propertyNumber", value)
+                }
+            />
+
+            <Text style={styles.label}>Ville</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Ville"
+                value={location.city}
+                onChangeText={(value) => handleLocationChange("city", value)}
+            />
+
+            <Text style={styles.label}>État</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="État"
+                value={location.state}
+                onChangeText={(value) => handleLocationChange("state", value)}
+            />
+
+            <Text style={styles.label}>Code Postal</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Code Postal"
+                value={location.postalCode}
+                onChangeText={(value) =>
+                    handleLocationChange("postalCode", value)
+                }
+            />
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    stepContainer: {
+        padding: 20,
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 10,
+    },
+    pickerContainer: {
+        borderWidth: 1,
+        borderColor: "black",
+        borderRadius: 5,
+        marginBottom: 20,
+    },
+    picker: {
+        height: 50,
+        color: Colors.primary, // Couleur personnalisée si nécessaire
+    },
+    input: {
+        height: 50,
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: 20,
+    },
+});
+
+export default LocationStep;

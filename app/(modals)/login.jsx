@@ -23,7 +23,7 @@ const Page = () => {
             login(email, password);
 
             if (user) {
-                router.push("/(tabs)/whishlist");
+                router.push("/(tabs)/inbox");
             }
             console.log("Erreur", "Email ou mot de passe incorrect");
         } catch (error) {
