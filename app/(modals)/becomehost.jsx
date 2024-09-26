@@ -103,7 +103,7 @@ const BecomeHost = () => {
     const [coverImage, setCoverImage] = useState(null);
     const [propertyImages, setPropertyImages] = useState([]);
 
-    const stepsTotal = 10;
+    const stepsTotal = 9;
 
     const isStepValid = () => {
         switch (step) {
@@ -130,7 +130,7 @@ const BecomeHost = () => {
                     endDate &&
                     endDate > startDate
                 );
-            case 2:
+            case 8:
                 return (
                     location.country.length > 0 &&
                     location.street.length > 0 &&
@@ -149,6 +149,9 @@ const BecomeHost = () => {
         if (isStepValid() && step < stepsTotal) {
             setStep(step + 1);
         }
+    };
+    const handlePublish = () => {
+        Alert.alert("Annonce publiée avec succès !");
     };
     const handleInputChange = (field, value) => {
         setLocation({
@@ -414,7 +417,7 @@ const BecomeHost = () => {
                     {coverImage && (
                         <Image
                             source={{ uri: coverImage }}
-                            style={styles.imagePreview}
+                            style={styles.coverImage}
                         />
                     )}
 
@@ -663,12 +666,41 @@ const BecomeHost = () => {
                     {/* <Button title="Suivant" onPress={handleNextStep} /> */}
                 </View>
             )}
+            {step === 9 && (
+                <View style={styles.stepContainer}>
+                    <Text style={styles.label}>Congratulations 🎉</Text>
+                    <Text style={{ fontSize: 18 }}>
+                        Excellent, félicitations pour avoir terminé l’annonce,
+                        elle attend d’être revue pour publication. 🎉
+                    </Text>
+                    <View style={styles.card}>
+                        <Image
+                            source={{ uri: coverImage }}
+                            style={styles.coverImage}
+                        />
+                        <Text style={styles.propertyDetails}>
+                            Type : {propertyType.join(", ")}
+                        </Text>
+                        <Text style={styles.propertyDetails}>
+                            Description : {description}
+                        </Text>
+                        <Text style={styles.propertyDetails}>
+                            Prix : {price.weekdayPrice} USD par nuit
+                        </Text>
+                        <Text style={styles.propertyDetails}>
+                            Localisation : {location.street}, {location.city},{" "}
+                            {location.state}, {location.country} -{" "}
+                            {location.postalCode}
+                        </Text>
+                    </View>
+                </View>
+            )}
             <TouchableOpacity
                 style={styles.uploadButton}
                 onPress={handleNextStep}
             >
                 <Text style={styles.uploadButtonText}>
-                    {step < stepsTotal ? "Suivant" : "Terminer"}
+                    {step < stepsTotal ? "Suivant" : "Publier"}
                 </Text>
             </TouchableOpacity>
         </ScrollView>
@@ -712,12 +744,13 @@ const styles = StyleSheet.create({
     imagePreview: {
         width: 100,
         height: 100,
-        margin: 5,
+        margin: 2,
         borderRadius: 5,
     },
     imageGallery: {
         flexDirection: "row",
         flexWrap: "wrap",
+        justifyContent: "space-between",
     },
     photoInstructions: {
         borderColor: "#ABABAB",
@@ -748,6 +781,7 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 18,
         marginBottom: 10,
+        // fontWeight: "800",
     },
     pickerSelectStyles: {
         fontSize: 16,
@@ -803,6 +837,39 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 5,
     },
+    //
+    coverImage: {
+        width: "100%",
+        height: 200,
+        borderRadius: 5,
+        marginTop: 10,
+    },
+    propertyDetails: {
+        marginTop: 10,
+        fontSize: 16,
+    },
+    card: {
+        backgroundColor: Colors.lightGray,
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+    },
+    groupName: {
+        fontWeight: "bold",
+    },
+    groupDescription: {
+        fontSize: 12,
+        color: Colors.darkGray,
+    },
+    countText: {
+        fontSize: 18,
+        marginHorizontal: 10,
+    },
+    counterContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    //
 });
 
 export default BecomeHost;
