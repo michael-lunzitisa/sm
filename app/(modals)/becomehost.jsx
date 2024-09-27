@@ -17,10 +17,11 @@ import Animated from "react-native-reanimated";
 import RNPickerSelect from "react-native-picker-select";
 import CheckBox from "expo-checkbox";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import listingsData from "@/assets/data/listings.json";
 
 const BecomeHost = () => {
     const [step, setStep] = useState(1);
-    const [propertyType, setPropertyType] = useState([]);
+    const [propertyType, setPropertyType] = useState("");
     const [location, setLocation] = useState({
         country: "",
         street: "",
@@ -29,13 +30,8 @@ const BecomeHost = () => {
         state: "",
         postalCode: "",
     });
-    // const [size, setSize] = useState({
-    //     area: "",
-    //     guests: 4,
-    //     bedrooms: 4,
-    //     beds: 4,
-    //     bathrooms: 2,
-    // });
+    const [locationName, setLocationName] = useState("");
+
     const [amenities, setAmenities] = useState({
         wifi: false,
         internet: false,
@@ -108,7 +104,7 @@ const BecomeHost = () => {
     const isStepValid = () => {
         switch (step) {
             case 1:
-                return propertyType.length > 0;
+                return propertyType.length > 0 && locationName.length > 0;
             case 2:
                 return groups.some((group) => group.count > 0);
             case 3:
@@ -150,9 +146,7 @@ const BecomeHost = () => {
             setStep(step + 1);
         }
     };
-    const handlePublish = () => {
-        Alert.alert("Annonce publiée avec succès !");
-    };
+
     const handleInputChange = (field, value) => {
         setLocation({
             ...location,
@@ -245,6 +239,73 @@ const BecomeHost = () => {
         setShowEndPicker(false);
         setEndDate(currentDate);
     };
+    // Fonction pour publier l'annonce
+    const handlePublishListing = () => {
+        const newListing = {
+            id: listingsData.length + 1,
+            name: propertyType,
+            description,
+            price: {
+                weekday: price.weekdayPrice,
+                weekend: price.weekendPrice,
+                currency: price.currency,
+            },
+            location: {
+                ...location,
+                startDate,
+                endDate,
+            },
+            amenities,
+            coverImage,
+            propertyImages,
+        };
+
+        // Ajoutez la nouvelle annonce à la liste existante
+        listingsData.push(newListing);
+        Alert.alert("Annonce publiée avec succès !");
+        console.log("Nouvelle annonce:", newListing);
+        // Réinitialisez tous les états
+        resetForm();
+    };
+    // Fonction pour réinitialiser le formulaire
+    const resetForm = () => {
+        setStep(1);
+        setPropertyType("");
+        setLocation({
+            country: "",
+            street: "",
+            propertyNumber: "",
+            city: "",
+            state: "",
+            postalCode: "",
+        });
+        setLocationName("");
+        setAmenities({});
+        setGroups([
+            { name: "Invités", text: "", count: 0 },
+            { name: "Chambre à coucher", text: "", count: 0 },
+            { name: "Lits", text: "", count: 0 },
+            { name: "Salle de bain", text: "", count: 0 },
+            { name: "Cuisine", text: "", count: 0 },
+        ]);
+        setDescription("");
+        setPrice({
+            currency: "USD",
+            weekdayPrice: "",
+            weekendPrice: "",
+            monthlyDiscount: "",
+            minNights: "1",
+            maxNights: "99",
+        });
+        setMinNights(0);
+        setMaxNights(0);
+        setStartDate(new Date());
+        setEndDate(new Date());
+        setShowStartPicker(false);
+        setShowEndPicker(false);
+        setCoverImage(null);
+        setPropertyImages([]);
+    };
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>
@@ -256,9 +317,7 @@ const BecomeHost = () => {
                         Choix des catégories d'annonces
                     </Text>
                     <RNPickerSelect
-                        onValueChange={(value) =>
-                            setPropertyType([...propertyType, value])
-                        }
+                        onValueChange={(value) => setPropertyType(value)}
                         items={propertyTypeOptions}
                         value={propertyType}
                         useNativeAndroidPickerStyle={false}
@@ -282,6 +341,19 @@ const BecomeHost = () => {
                             />
                         )}
                     />
+                    {/* TextInput pour le nom du lieu */}
+                    <Text style={styles.label}>Nom du lieu</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Entrez le nom du lieu"
+                        value={locationName}
+                        onChangeText={(text) => setLocationName(text)}
+                    />
+                    <Text style={styles.helperText}>
+                        Un nom accrocheur inclut généralement : Nom de la maison
+                        + Nom de la chambre + Propriété en vedette + Destination
+                        touristique.
+                    </Text>
                 </View>
             )}
             {step === 2 && (
@@ -370,7 +442,11 @@ const BecomeHost = () => {
             )}
             {step === 3 && (
                 <View style={styles.stepContainer}>
-                    <Text>Équipements</Text>
+                    <Text style={styles.label}>Équipements</Text>
+                    <Text style={styles.semiLabel}>
+                        De nombreux clients ont recherché un hébergement en
+                        fonction de critères d'équipements
+                    </Text>
                     {amenitiesOptions.map((amenity) => (
                         <View
                             style={styles.checkboxContainer}
@@ -444,7 +520,13 @@ const BecomeHost = () => {
             {/* Étape pour la description */}
             {step === 5 && (
                 <View style={styles.stepContainer}>
-                    <Text>Décrivez votre propriété</Text>
+                    <Text style={styles.label}>Décrivez votre propriété</Text>
+                    <Text style={styles.semiLabel}>
+                        Mentionnez les meilleures caractéristiques de votre
+                        logement, les équipements spéciaux comme le Wi-Fi rapide
+                        ou le parking, ainsi que les choses que vous aimez dans
+                        le quartier.
+                    </Text>
                     <TextInput
                         style={styles.input}
                         multiline
@@ -571,7 +653,7 @@ const BecomeHost = () => {
                             <DateTimePicker
                                 value={startDate}
                                 mode="date"
-                                display="default"
+                                display="spinner"
                                 onChange={handleStartDateChange}
                             />
                         )}
@@ -586,7 +668,7 @@ const BecomeHost = () => {
                             <DateTimePicker
                                 value={endDate}
                                 mode="date"
-                                display="default"
+                                display="spinner"
                                 onChange={handleEndDateChange}
                             />
                         )}
@@ -679,7 +761,8 @@ const BecomeHost = () => {
                             style={styles.coverImage}
                         />
                         <Text style={styles.propertyDetails}>
-                            Type : {propertyType.join(", ")}
+                            Type : {propertyType}
+                            {/* Type : {propertyType.join(", ")} */}
                         </Text>
                         <Text style={styles.propertyDetails}>
                             Description : {description}
@@ -697,12 +780,21 @@ const BecomeHost = () => {
             )}
             <TouchableOpacity
                 style={styles.uploadButton}
-                onPress={handleNextStep}
+                onPress={
+                    step === stepsTotal ? handlePublishListing : handleNextStep
+                }
             >
                 <Text style={styles.uploadButtonText}>
-                    {step < stepsTotal ? "Suivant" : "Publier"}
+                    {step === stepsTotal ? "Publier" : "Suivant"}
                 </Text>
             </TouchableOpacity>
+            {/* <Button
+                style={styles.uploadButton}
+                title={step === stepsTotal ? "Publier" : "Suivant"}
+                onPress={
+                    step === stepsTotal ? handlePublishListing : handleNextStep
+                }
+            /> */}
         </ScrollView>
     );
 };
@@ -782,6 +874,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 10,
         // fontWeight: "800",
+    },
+    semiLabel: {
+        marginBottom: 10,
     },
     pickerSelectStyles: {
         fontSize: 16,
