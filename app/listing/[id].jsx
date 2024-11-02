@@ -153,7 +153,7 @@ const Page = () => {
 
                     <TouchableOpacity
                         style={[defaulStyles.btn, { paddingHorizontal: 20 }]}
-                        onPress={handleReservation} // Appeler la fonction de gestion
+                        onPress={handleReservation}
                     >
                         <Text style={defaulStyles.btnText}>Réserver</Text>
                     </TouchableOpacity>

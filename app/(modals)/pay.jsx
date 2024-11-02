@@ -771,7 +771,7 @@ const Pay = () => {
             count: 0,
         },
     ]);
-    const [isExpanded, setIsExpanded] = useState(false);
+    // const [isExpanded, setIsExpanded] = useState(false);
 
     const totalVoyageurs = groups.reduce((acc, group) => acc + group.count, 0);
     const router = useRouter();
