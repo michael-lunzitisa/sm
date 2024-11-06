@@ -11,7 +11,7 @@ const caroussel = () => {
         "https://images.pexels.com/photos/2373201/pexels-photo-2373201.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     ];
     return (
-        <View style={StyleSheet.carousselContainer}>
+        <View style={styles.carousselContainer}>
             <SliderBox
                 images={slides}
                 dotColor={Colors.primaty}

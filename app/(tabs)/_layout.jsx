@@ -13,8 +13,18 @@ const Layout = () => {
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: Colors.primary,
+                tabBarStyle: {
+                    backgroundColor: "#222",
+                    borderTopColor: "#fff",
+                    borderWidth: 0,
+                    minHeight: 74,
+                },
                 tabBarLabelStyle: {
                     fontFamily: "mon-sb",
+                },
+                tabBarItemStyle: {
+                    paddingBottom: 10,
+                    paddingTop: 14,
                 },
             }}
         >
@@ -53,6 +63,7 @@ const Layout = () => {
                 name="inbox"
                 options={{
                     tabBarLabel: "Messages",
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons
                             name="message-outline"
@@ -66,7 +77,7 @@ const Layout = () => {
                 name="loginProfil"
                 options={{
                     tabBarLabel: user ? "Profil" : "Connexion",
-                    headerShown: "false",
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons
                             name="person-circle-outline"
