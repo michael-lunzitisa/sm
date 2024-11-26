@@ -1,15 +1,18 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useMemo, useRef } from "react";
-import BottomSheet from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import Listings from "./Listings";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Color, Colors } from "../constants/Colors";
+import {
+    GestureHandlerRootView,
+    ScrollView,
+} from "react-native-gesture-handler";
+import { Colors } from "../constants/Colors";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const ListingsBottomSheet = ({ listings, category }) => {
     const BottomSheetRef = useRef(null);
-    const snapPoints = useMemo(() => ["10%", "100%"], []);
+    const snapPoints = useMemo(() => ["5%", "100%"], []);
     const showMap = () => {
         BottomSheetRef.current?.collapse();
     };
@@ -24,22 +27,29 @@ const ListingsBottomSheet = ({ listings, category }) => {
                 handleIndicatorStyle={{ backgroundColor: Colors.gray }}
                 style={styles.sheetContainer}
             >
-                <View style={{ flex: 1 }}>
+                <BottomSheetScrollView
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    nestedScrollEnabled={true}
+                >
+                    {/* <View
+                    style={{ flex: 1 }}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    nestedScrollEnabled={true}
+                > */}
                     <Listings listings={listings} category={category} />
-                    <View style={styles.absoluteBtn}>
-                        <TouchableOpacity onPress={showMap} style={styles.btn}>
-                            <Text
-                                style={{ fontFamily: "mon-sb", color: "#fff" }}
-                            >
-                                Map
-                            </Text>
-                            <Ionicons
-                                name="map"
-                                size={20}
-                                color={"#FFF"}
-                            ></Ionicons>
-                        </TouchableOpacity>
-                    </View>
+                </BottomSheetScrollView>
+
+                <View style={styles.absoluteBtn}>
+                    <TouchableOpacity onPress={showMap} style={styles.btn}>
+                        <Text style={{ fontFamily: "mon-sb", color: "#fff" }}>
+                            Map
+                        </Text>
+                        <Ionicons
+                            name="map"
+                            size={20}
+                            color={"#FFF"}
+                        ></Ionicons>
+                    </TouchableOpacity>
                 </View>
             </BottomSheet>
         </GestureHandlerRootView>
@@ -65,7 +75,6 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     sheetContainer: {
-        borderRadius: 10,
         backgroundColor: "#fff",
         borderRadius: 5,
         alignItems: "center",

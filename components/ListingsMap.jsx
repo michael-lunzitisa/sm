@@ -23,11 +23,12 @@ const ListingsMap = ({ listings }) => {
     return (
         <View style={styles.mapContainer}>
             <MapView
-                style={styles.map}
+                style={StyleSheet.absoluteFill}
                 showsUserLocation
                 provider={PROVIDER_GOOGLE}
                 showsMyLocationButton
                 initialRegion={initialRegion}
+                // langage="Fr"
             >
                 {listings.map((listing) => (
                     <Marker
@@ -55,12 +56,14 @@ const ListingsMap = ({ listings }) => {
 const styles = StyleSheet.create({
     mapContainer: {
         flex: 1,
-        width: Dimensions.get("window").width,
+        // width: Dimensions.get("window").width,
         height: Dimensions.get("window").height / 2, // Hauteur ajustable
+        // zIndex: -1000000,
     },
-    map: {
-        flex: 1,
-    },
+    // map: {
+    //     width: "100%",
+    //     height: "100%",
+    // },
     marker: {
         backgroundColor: "#fff",
         // padding: 6,
