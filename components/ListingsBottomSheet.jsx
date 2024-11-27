@@ -2,10 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useMemo, useRef } from "react";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import Listings from "./Listings";
-import {
-    GestureHandlerRootView,
-    ScrollView,
-} from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Colors } from "../constants/Colors";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";

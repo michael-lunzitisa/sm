@@ -129,7 +129,7 @@ import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
-import LinstingsMap from "../../components/ListingsMap";
+import ListingsMap from "../../components/ListingsMap";
 import listingsData from "@/assets/data/listings.json";
 import { useState, useMemo, useEffect } from "react";
 import ListingsBottomSheet from "../../components/ListingsBottomSheet";
@@ -193,12 +193,12 @@ const Page = () => {
                 </View>
             ) : filteredData && filteredData.length > 0 ? (
                 <>
-                    <Listings listings={filteredData} category={category} />
-                    {/* <LinstingsMap listings={filteredData} /> */}
-                    {/* <ListingsBottomSheet
+                    {/* <Listings listings={filteredData} category={category} /> */}
+                    {/* <ListingsMap listings={filteredData} /> */}
+                    <ListingsBottomSheet
                         listings={filteredData}
                         category={category}
-                    /> */}
+                    />
                 </>
             ) : (
                 <View style={styles.emptyContainer}>
