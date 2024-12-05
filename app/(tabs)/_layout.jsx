@@ -54,6 +54,7 @@ const Layout = () => {
                 name="trips"
                 options={{
                     tabBarLabel: "Voyages",
+                    headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome5 name="route" color={color} size={size} />
                     ),
@@ -63,7 +64,7 @@ const Layout = () => {
                 name="inbox"
                 options={{
                     tabBarLabel: "Messages",
-                    headerShown: false,
+                    // headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons
                             name="message-outline"

@@ -754,6 +754,7 @@ import MobileMoney from "../../components/MobileMoney";
 import { Link } from "expo-router";
 import { useRouter } from "expo-router";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useAuth } from "../context/contextLogin";
 
 const Pay = () => {
     const bottomRef = useRef(null);
@@ -789,6 +790,8 @@ const Pay = () => {
 
     const totalPrice = pricePerNight * numberOfNights;
     const grandTotal = totalPrice + cleaningFee + taxes;
+
+    const { addReservation } = useAuth();
 
     const handleBottomSheet = (method) => {
         if (showBottomSheet && paymentMethod === method) {
@@ -841,6 +844,20 @@ const Pay = () => {
             (acc, group) => acc + group.count,
             0
         );
+
+        // Créer un objet réservation
+        const reservation = {
+            id: `${listing.id}-${Date.now()}`, // Générer un ID unique
+            property: listing.title,
+            propertyImage: listing.featuredImage,
+            dateRange: selectedDateRange,
+            voyageurs: totalVoyageurs,
+            total: grandTotal.toFixed(2),
+            paymentMethod: paymentMethod || "Non spécifié",
+        };
+
+        // Ajouter la réservation au contexte
+        addReservation(reservation);
 
         router.push({
             pathname: "(modals)/bookingsuccess",
