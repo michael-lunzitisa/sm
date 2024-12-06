@@ -19,68 +19,51 @@ const Profil = () => {
 
     return (
         <ScrollView
-            vertical
             showsVerticalScrollIndicator={false}
-            inverted={true}
+            contentContainerStyle={styless.scrollContent}
         >
             <SafeAreaView style={defaulStyles.container}>
+                {/* Header */}
                 <View style={styless.headerContainer}>
                     <Text style={styless.header}>Profil</Text>
-                    <Ionicons name="notifications" size={26} />
-                </View>
-
-                <View style={styless.card}>
                     <TouchableOpacity>
-                        <Image
-                            source={require("../assets/images/user.png")}
-                            style={styless.avatar}
+                        <Ionicons
+                            name="notifications"
+                            size={26}
+                            color={Colors.primary}
                         />
-                        <View
-                            style={{
-                                flexDirection: "column",
-                                gap: 6,
-                                marginTop: 12,
-                            }}
-                        >
-                            <Text style={{ fontSize: 20 }}>{user.email}</Text>
-                        </View>
-                        <View>
-                            <Text style={{ fontSize: 16 }}>
-                                {user.password}
-                            </Text>
-                        </View>
                     </TouchableOpacity>
                 </View>
+
+                {/* User Info Card */}
+                <View style={styless.card}>
+                    <Image
+                        source={require("../assets/images/user.png")}
+                        style={styless.avatar}
+                    />
+                    <Text style={styless.userEmail}>{user.email}</Text>
+                    <Text style={styless.userPassword}>{user.password}</Text>
+                </View>
+
+                {/* Logout Button */}
                 <TouchableOpacity style={styless.logoutButton} onPress={logout}>
-                    <Text style={styless.logoutText}>Logout</Text>
+                    <Text style={styless.logoutText}>Se déconnecter</Text>
                 </TouchableOpacity>
 
-                {/* becomHost */}
+                {/* Become Host Card */}
                 <View style={styless.card}>
                     <TouchableOpacity
                         onPress={() => router.push("/(modals)/becomehost")}
+                        style={styless.hostContainer}
                     >
                         <Image
                             source={require("../assets/images/maison.png")}
-                            style={{
-                                width: 200,
-                                height: 150,
-                                borderRadius: 5,
-                            }}
+                            style={styless.hostImage}
                         />
-
-                        <View
-                            style={{
-                                flexDirection: "column",
-                                gap: 6,
-                                marginTop: 12,
-                            }}
-                        >
-                            <Text style={{ fontSize: 15, fontFamily: "mon-b" }}>
-                                Devenez Hote de votre propriété en toute
-                                sécurité avec SODEICO IMMO
-                            </Text>
-                        </View>
+                        <Text style={styless.hostText}>
+                            Devenez hôte de votre propriété en toute sécurité
+                            avec SODEICO IMMO
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -89,51 +72,83 @@ const Profil = () => {
 };
 
 const styless = StyleSheet.create({
+    scrollContent: {
+        paddingBottom: 30,
+    },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: 24,
+        paddingHorizontal: 24,
+        paddingTop: 16,
     },
     header: {
         fontFamily: "mon-sb",
         fontSize: 24,
+        color: Colors.primary,
     },
     card: {
         backgroundColor: "#fff",
-        padding: 24,
+        padding: 20,
         borderRadius: 16,
         marginHorizontal: 24,
         marginTop: 24,
-        elevation: 2,
+        elevation: 3,
         shadowColor: "#000",
-        shadowOpacity: 0.2,
-        shadowRadius: 6,
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
         shadowOffset: {
-            width: 1,
+            width: 0,
             height: 2,
         },
         alignItems: "center",
-        gap: 14,
-        marginBottom: 24,
     },
     avatar: {
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: Colors.gray,
+        backgroundColor: Colors.grayLight,
+        marginBottom: 16,
     },
-    logoutText: {
+    userEmail: {
+        fontSize: 18,
         fontFamily: "mon-b",
-        fontSize: 15,
+        color: Colors.textDark,
+        marginBottom: 4,
+    },
+    userPassword: {
+        fontSize: 14,
+        fontFamily: "mon",
+        color: Colors.textGray,
     },
     logoutButton: {
         backgroundColor: Colors.primary,
-        padding: 12,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
         borderRadius: 8,
-        marginHorizontal: 115,
-        marginBottom: 24,
+        marginHorizontal: 100,
+        marginTop: 24,
         alignItems: "center",
+    },
+    logoutText: {
+        fontSize: 14,
+        fontFamily: "mon-b",
+        color: "#fff",
+    },
+    hostContainer: {
+        alignItems: "center",
+    },
+    hostImage: {
+        width: "100%",
+        height: 150,
+        borderRadius: 8,
+    },
+    hostText: {
+        marginTop: 12,
+        fontSize: 16,
+        fontFamily: "mon",
+        textAlign: "center",
+        color: Colors.textDark,
     },
 });
 

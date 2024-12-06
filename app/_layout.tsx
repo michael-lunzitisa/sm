@@ -55,7 +55,26 @@ export default function RootLayout() {
             name="(modals)/login" 
             options={{ 
               title: "Se connecter ou s'inscrire",
-              headerTitleStyle: { fontFamily: "mon-sb" },
+              headerTitleStyle: { fontFamily: "mon-sb", color: "#333", fontSize: 17, },
+              headerTitleAlign: "center",
+              headerShadowVisible: true,
+              // headerShown: true,
+              presentation: "modal",
+              headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
+                  <Ionicons name='close-outline' size={28}/>
+                </TouchableOpacity>
+              ) 
+            }} 
+          />
+          <Stack.Screen 
+            name="(modals)/signup" 
+            options={{ 
+              title: "S'inscrire",
+              headerTitleStyle: { fontFamily: "mon-sb", color: "#333", fontSize: 17, },
+              headerTitleAlign: "center",
+              headerShadowVisible: true,
+              // headerShown: true,
               presentation: "modal",
               headerLeft: () => (
                 <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
@@ -68,7 +87,7 @@ export default function RootLayout() {
           <Stack.Screen 
             name="(modals)/booking" 
             options={{ 
-              headerTitleStyle: { fontFamily: "mon-sb" },
+              headerTitleStyle: { fontFamily: "mon-sb", },
               presentation: "transparentModal",
               animation:"fade",
               headerTransparent:true,

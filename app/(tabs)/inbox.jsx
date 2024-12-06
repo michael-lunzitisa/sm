@@ -1,12 +1,14 @@
-import { View, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Page = () => {
+const inbox = () => {
     return (
         <View>
-            <Text>Inbox</Text>
+            <Text>inbox</Text>
         </View>
     );
 };
 
-export default Page;
+export default inbox;
+
+const styles = StyleSheet.create({});

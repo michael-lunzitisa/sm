@@ -12,7 +12,7 @@ import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "../context/contextLogin";
 
-const Page = () => {
+const Login = () => {
     const { login, user } = useAuth();
     const router = useRouter();
     const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const Page = () => {
             login(email, password);
 
             if (user) {
-                router.push("/(tabs)/inbox");
+                router.push("/(tabs)/index");
             }
             console.log("Erreur", "Email ou mot de passe incorrect");
         } catch (error) {
@@ -100,6 +100,18 @@ const Page = () => {
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            {/* Ligne pour S'inscrire */}
+            <View style={styles.signupContainer}>
+                <Text style={styles.signupText}>
+                    Vous n'avez pas de compte ?
+                </Text>
+                <TouchableOpacity
+                    onPress={() => router.push("(modals)/signup")}
+                >
+                    <Text style={styles.signupLink}> S'inscrire</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -109,6 +121,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         padding: 26,
+        justifyContent: "center",
+        alignContent: "center",
     },
     separatorView: {
         flexDirection: "row",
@@ -116,7 +130,7 @@ const styles = StyleSheet.create({
         marginVertical: 30,
     },
     separator: {
-        fontFamily: "mon-sb",
+        fontFamily: "mon-b",
         color: Colors.gray,
     },
     bntOutline: {
@@ -135,5 +149,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: "mon-sb",
     },
+    signupContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 20,
+    },
+    signupText: {
+        fontSize: 14,
+        fontFamily: "mon-sb",
+        color: Colors.gray,
+    },
+    signupLink: {
+        fontSize: 14,
+        fontFamily: "mon-b",
+        color: Colors.primary,
+    },
 });
-export default Page;
+
+export default Login;
